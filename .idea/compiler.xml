@@ -3,7 +3,7 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Annotation profile for statisticservice" enabled="true">
+      <profile name="Annotation profile for notificationservice" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -12,12 +12,14 @@
         </processorPath>
         <module name="statisticservice" />
         <module name="accountservice" />
+        <module name="notificationservice" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="accountservice" options="-parameters" />
+      <module name="notificationservice" options="-parameters" />
       <module name="statisticservice" options="-parameters" />
     </option>
   </component>

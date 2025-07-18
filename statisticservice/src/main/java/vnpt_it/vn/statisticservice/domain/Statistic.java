@@ -29,5 +29,4 @@ public class Statistic {
     public void handleBeforeCreate() {
         this.createdDate = Instant.now();
     }
-
 }
