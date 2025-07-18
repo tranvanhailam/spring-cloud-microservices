@@ -21,7 +21,7 @@ public class AccountController {
 
     @PostMapping("/account")
     public void createAccount(@RequestBody AccountDTO accountDTO) {
-        accountService.addAccount(accountDTO);
+        this.accountService.addAccount(accountDTO);
     }
 
     @GetMapping("/accounts")
