@@ -5,17 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5711b4b2-e1e4-43b2-a03e-6a8cebe326df" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/notificationservice/src/main/java/vnpt_it/vn/notificationservice/controller/NotificationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notificationservice/src/main/java/vnpt_it/vn/notificationservice/model/MessageDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notificationservice/src/main/java/vnpt_it/vn/notificationservice/service/NotificationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notificationservice/src/main/java/vnpt_it/vn/notificationservice/service/NotificationServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notificationservice/src/main/resources/templates/welcome-email.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/client/NotificationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/client/StatisticService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/model/MessageDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/model/StatisticDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/AccountserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/AccountserviceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/controller/AccountController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accountservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/statisticservice/src/main/java/vnpt_it/vn/statisticservice/domain/Statistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticservice/src/main/java/vnpt_it/vn/statisticservice/domain/Statistic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notificationservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notificationservice/src/main/java/vnpt_it/vn/notificationservice/NotificationserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/src/main/java/vnpt_it/vn/notificationservice/NotificationserviceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notificationservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/statisticservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/statisticservice/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/statisticservice/src/main/java/vnpt_it/vn/statisticservice/StatisticserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticservice/src/main/java/vnpt_it/vn/statisticservice/StatisticserviceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/statisticservice/src/main/java/vnpt_it/vn/statisticservice/model/StatisticDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticservice/src/main/java/vnpt_it/vn/statisticservice/model/StatisticDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/statisticservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/statisticservice/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,10 +39,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -54,6 +59,7 @@
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.AccountserviceApplication.executor": "Run",
     "Spring Boot.NotificationserviceApplication.executor": "Run",
@@ -82,6 +88,9 @@
       <recent name="C:\Users\haila\Documents\Microservices - Project\spring-cloud-microservices\accountservice\src\main\java\vnpt_it\vn\accountservice\util" />
       <recent name="C:\Users\haila\Documents\Microservices - Project\spring-cloud-microservices\accountservice\src\main\java\vnpt_it\vn\accountservice\model" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="vnpt_it.vn.accountservice.model" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
@@ -93,7 +102,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.NotificationserviceApplication">
+  <component name="RunManager" selected="Spring Boot.AccountserviceApplication">
     <configuration name="AccountserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="accountservice" />
@@ -134,7 +143,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1752817221033</updated>
-      <workItem from="1752817222131" duration="13338000" />
+      <workItem from="1752817222131" duration="18801000" />
+      <workItem from="1752907473765" duration="1863000" />
     </task>
     <servers />
   </component>

@@ -1,15 +1,11 @@
-package vnpt_it.vn.statisticservice.model;
+package vnpt_it.vn.accountservice.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.Instant;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -19,4 +15,8 @@ public class StatisticDTO {
     private long id;
     private String message;
     private Instant createdDate;
+
+    public StatisticDTO(String message) {
+        this.message = message;
+    }
 }
