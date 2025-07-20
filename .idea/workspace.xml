@@ -5,21 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5711b4b2-e1e4-43b2-a03e-6a8cebe326df" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/client/NotificationServiceFallback.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/client/StatisticServiceFallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configservice/src/main/resources/share/account-service.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configservice/src/main/resources/share/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configservice/src/main/resources/share/notification-service.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configservice/src/main/resources/share/statistic-service.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accountservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/client/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/client/NotificationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/client/StatisticService.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/client/StatisticService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/controller/ExceptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/controller/ExceptionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/service/AccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/service/AccountServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accountservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notificationservice/src/main/java/vnpt_it/vn/notificationservice/controller/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/src/main/java/vnpt_it/vn/notificationservice/controller/NotificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/statisticservice/src/main/java/vnpt_it/vn/statisticservice/controller/StatisticController.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticservice/src/main/java/vnpt_it/vn/statisticservice/controller/StatisticController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +37,13 @@
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
 }</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -49,35 +52,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.AccountserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.NotificationserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.StatisticserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/haila/Documents/Microservices - Project/spring-cloud-microservices/accountservice/src/main/java/vnpt_it/vn/accountservice&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.AccountserviceApplication.executor": "Run",
+    "Spring Boot.ConfigserviceApplication.executor": "Run",
+    "Spring Boot.NotificationserviceApplication.executor": "Run",
+    "Spring Boot.StatisticserviceApplication.executor": "Run",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/haila/Documents/Microservices - Project/spring-cloud-microservices/accountservice/src/main/java/vnpt_it/vn/accountservice",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "spring",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\haila\Documents\Microservices - Project\spring-cloud-microservices\accountservice\src\main\java\vnpt_it\vn\accountservice" />
@@ -100,11 +104,18 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.StatisticserviceApplication">
+  <component name="RunManager" selected="Spring Boot.AccountserviceApplication">
     <configuration name="AccountserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="accountservice" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="vnpt_it.vn.accountservice.AccountserviceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConfigserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="configservice" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="vnpt_it.vn.configservice.ConfigserviceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -143,11 +154,15 @@
       <updated>1752817221033</updated>
       <workItem from="1752817222131" duration="18801000" />
       <workItem from="1752907473765" duration="18790000" />
-      <workItem from="1752993366126" duration="14421000" />
+      <workItem from="1752993366126" duration="18929000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
