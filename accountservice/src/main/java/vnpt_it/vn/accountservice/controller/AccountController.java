@@ -1,11 +1,16 @@
 package vnpt_it.vn.accountservice.controller;
 
+import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import vnpt_it.vn.accountservice.client.NotificationService;
 import vnpt_it.vn.accountservice.client.StatisticService;
+import vnpt_it.vn.accountservice.client.StatisticServiceFallback;
 import vnpt_it.vn.accountservice.domain.Account;
 import vnpt_it.vn.accountservice.model.AccountDTO;
 import vnpt_it.vn.accountservice.model.MessageDTO;
@@ -19,28 +24,15 @@ import java.util.Optional;
 @RestController
 public class AccountController {
     private final AccountService accountService;
-    private final StatisticService statisticService;
-    private final NotificationService notificationService;
 
-    public AccountController(AccountService accountService, StatisticService statisticService,NotificationService notificationService) {
+    public AccountController(AccountService accountService) {
         this.accountService = accountService;
-        this.statisticService = statisticService;
-        this.notificationService = notificationService;
     }
 
     @PostMapping("/account")
     public void createAccount(@RequestBody AccountDTO accountDTO) {
         this.accountService.addAccount(accountDTO);
-        //create statistic
-        this.statisticService.createStatistic(new StatisticDTO("Account " + accountDTO.getUsername() + " is created"));
-        //send email
-        MessageDTO messageDTO = new MessageDTO();
-        messageDTO.setFrom("hailamtranvan@gmai.com");
-        messageDTO.setTo("hailamtranvan@gmail.com");
-        messageDTO.setToName("Hai Lam");
-        messageDTO.setSubject("No reply");
-        messageDTO.setContent("Welcome to VNPT IT");
-        this.notificationService.sendNotification(messageDTO);
+
     }
 
     @GetMapping("/accounts")
@@ -56,15 +48,11 @@ public class AccountController {
     @DeleteMapping("/account")
     public void deleteAccount(@RequestBody AccountDTO accountDTO) {
         this.accountService.deleteAccount(accountDTO);
-        //create statistic
-        this.statisticService.createStatistic(new StatisticDTO("Account " + accountDTO.getUsername() + " is deleted"));
     }
 
     @PutMapping("/account")
     public void updateAccount(@RequestBody AccountDTO accountDTO) {
         this.accountService.updateAccount(accountDTO);
-        //create statistic
-        this.statisticService.createStatistic(new StatisticDTO("Account " + accountDTO.getUsername() + " is updated"));
     }
 
 }

@@ -1,9 +1,17 @@
 package vnpt_it.vn.accountservice.service;
 
+import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import vnpt_it.vn.accountservice.client.NotificationService;
+import vnpt_it.vn.accountservice.client.NotificationServiceFallback;
+import vnpt_it.vn.accountservice.client.StatisticService;
+import vnpt_it.vn.accountservice.client.StatisticServiceFallback;
 import vnpt_it.vn.accountservice.domain.Account;
 import vnpt_it.vn.accountservice.model.AccountDTO;
+import vnpt_it.vn.accountservice.model.MessageDTO;
+import vnpt_it.vn.accountservice.model.StatisticDTO;
 import vnpt_it.vn.accountservice.repository.AccountRepository;
 import vnpt_it.vn.accountservice.util.ModelMapper;
 
@@ -16,11 +24,14 @@ import java.util.stream.Collectors;
 public class AccountServiceImpl implements AccountService {
 
     private final AccountRepository accountRepository;
-
+    private final StatisticService statisticService;
+    private final NotificationService notificationService;
     private final ModelMapper modelMapper;
 
-    public AccountServiceImpl(AccountRepository accountRepository, ModelMapper modelMapper) {
+    public AccountServiceImpl(AccountRepository accountRepository, StatisticService statisticService, NotificationService notificationService, ModelMapper modelMapper) {
         this.accountRepository = accountRepository;
+        this.statisticService = statisticService;
+        this.notificationService = notificationService;
         this.modelMapper = modelMapper;
     }
 
@@ -28,7 +39,17 @@ public class AccountServiceImpl implements AccountService {
     public void addAccount(AccountDTO accountDTO) {
         Account account = this.modelMapper.mapAccountDTOToAccount(accountDTO, false);
 //        account.setPassword(new BCrypt);
-        accountRepository.save(account);
+//        this.accountRepository.save(account);
+        //create statistic
+        this.statisticService.createStatistic(new StatisticDTO("Account " + accountDTO.getUsername() + " is created"));
+        //send email
+        MessageDTO messageDTO = new MessageDTO();
+        messageDTO.setFrom("hailamtranvan@gmai.com");
+        messageDTO.setTo("hailamtranvan@gmail.com");
+        messageDTO.setToName("Hai Lam");
+        messageDTO.setSubject("No reply");
+        messageDTO.setContent("Welcome to VNPT IT");
+        this.notificationService.sendNotification(messageDTO);
     }
 
     @Override
@@ -38,6 +59,8 @@ public class AccountServiceImpl implements AccountService {
             Account account = this.modelMapper.mapAccountDTOToAccount(accountDTO, false);
             this.accountRepository.save(account);
         }
+        //create statistic
+        this.statisticService.createStatistic(new StatisticDTO("Account " + accountDTO.getUsername() + " is updated"));
     }
 
     @Override
@@ -46,7 +69,8 @@ public class AccountServiceImpl implements AccountService {
         if (optionalAccount.isPresent()) {
             this.accountRepository.delete(optionalAccount.get());
         }
-
+        //create statistic
+        this.statisticService.createStatistic(new StatisticDTO("Account " + accountDTO.getUsername() + " is deleted"));
     }
 
     @Override

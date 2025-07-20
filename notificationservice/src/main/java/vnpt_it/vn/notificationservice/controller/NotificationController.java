@@ -9,6 +9,7 @@ import vnpt_it.vn.notificationservice.service.NotificationService;
 @RestController
 public class NotificationController {
     private final NotificationService notificationService;
+
     public NotificationController(NotificationService notificationService) {
         this.notificationService = notificationService;
     }

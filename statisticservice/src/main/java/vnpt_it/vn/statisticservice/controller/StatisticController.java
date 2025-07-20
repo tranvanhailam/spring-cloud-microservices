@@ -12,13 +12,16 @@ import java.util.List;
 @RestController
 public class StatisticController {
     private final StatisticService statisticService;
+
     public StatisticController(StatisticService statisticService) {
         this.statisticService = statisticService;
     }
 
     @PostMapping("/statistic")
-    public void createStatistic(@RequestBody StatisticDTO statisticDTO) {
+    public StatisticDTO createStatistic(@RequestBody StatisticDTO statisticDTO) throws InterruptedException {
+//        throw new RuntimeException("Not Implemented");
         this.statisticService.addStatistic(statisticDTO);
+        return statisticDTO;
     }
 
     @GetMapping("/statistics")
