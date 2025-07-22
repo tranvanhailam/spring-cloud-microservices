@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import vnpt_it.vn.accountservice.model.StatisticDTO;
 
-@FeignClient(name = "statistic-service", url = "http://localhost:8082", fallback = StatisticServiceFallback.class)
+@FeignClient(name = "statistic-service", fallback = StatisticServiceFallback.class)
 public interface StatisticService {
     @PostMapping("/statistic")
     public StatisticDTO createStatistic(@RequestBody StatisticDTO statisticDTO);

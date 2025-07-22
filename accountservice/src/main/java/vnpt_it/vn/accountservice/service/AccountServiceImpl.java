@@ -39,7 +39,7 @@ public class AccountServiceImpl implements AccountService {
     public void addAccount(AccountDTO accountDTO) {
         Account account = this.modelMapper.mapAccountDTOToAccount(accountDTO, false);
 //        account.setPassword(new BCrypt);
-//        this.accountRepository.save(account);
+        this.accountRepository.save(account);
         //create statistic
         this.statisticService.createStatistic(new StatisticDTO("Account " + accountDTO.getUsername() + " is created"));
         //send email
@@ -64,13 +64,14 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void deleteAccount(AccountDTO accountDTO) {
-        Optional<Account> optionalAccount = this.accountRepository.findById(accountDTO.getId());
+    public void deleteAccount(long id) {
+        Optional<Account> optionalAccount = this.accountRepository.findById(id);
         if (optionalAccount.isPresent()) {
             this.accountRepository.delete(optionalAccount.get());
+            //create statistic
+            this.statisticService.createStatistic(new StatisticDTO("Account " + optionalAccount.get().getUsername() + " is deleted"));
         }
-        //create statistic
-        this.statisticService.createStatistic(new StatisticDTO("Account " + accountDTO.getUsername() + " is deleted"));
+
     }
 
     @Override

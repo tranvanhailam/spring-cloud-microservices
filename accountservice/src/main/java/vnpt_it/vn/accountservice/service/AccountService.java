@@ -10,7 +10,7 @@ public interface AccountService {
 
     void updateAccount(AccountDTO accountDTO);
 
-    void deleteAccount(AccountDTO accountDTO);
+    void deleteAccount(long id);
 
     List<AccountDTO> getAccounts();
 

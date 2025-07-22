@@ -45,9 +45,9 @@ public class AccountController {
         return Optional.of(new ResponseEntity<AccountDTO>(this.accountService.getAccount(id), HttpStatus.OK)).orElse(new ResponseEntity<AccountDTO>(HttpStatus.NOT_FOUND));
     }
 
-    @DeleteMapping("/account")
-    public void deleteAccount(@RequestBody AccountDTO accountDTO) {
-        this.accountService.deleteAccount(accountDTO);
+    @DeleteMapping("/account/{id}")
+    public void deleteAccount(@PathVariable("id") long id) {
+        this.accountService.deleteAccount(id);
     }
 
     @PutMapping("/account")
