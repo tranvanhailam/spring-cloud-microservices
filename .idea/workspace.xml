@@ -5,24 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5711b4b2-e1e4-43b2-a03e-6a8cebe326df" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/configservice/src/main/resources/share/monitor-admin.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gatewayservice/src/main/java/vnpt_it/vn/gatewayservice/filter/FirstPreLastPostGlobalFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gatewayservice/src/main/java/vnpt_it/vn/gatewayservice/filter/LoggingGatewayFilterFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accountservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/configservice/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configservice/src/main/java/vnpt_it/vn/configservice/ConfigserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/configservice/src/main/java/vnpt_it/vn/configservice/ConfigserviceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/configservice/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configservice/src/main/resources/share/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/configservice/src/main/resources/share/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discoveryservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/discoveryservice/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gatewayservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gatewayservice/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gatewayservice/src/main/java/vnpt_it/vn/gatewayservice/config/RouteConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gatewayservice/src/main/java/vnpt_it/vn/gatewayservice/config/RouteConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notificationservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/statisticservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/statisticservice/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configservice/src/main/resources/share/monitor-admin.properties" beforeDir="false" afterPath="$PROJECT_DIR$/configservice/src/main/resources/share/monitor-admin.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +100,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.NotificationserviceApplication">
+  <component name="RunManager" selected="Spring Boot.MonitoradminApplication">
     <configuration name="AccountserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="accountservice" />
@@ -219,7 +203,7 @@
       <workItem from="1752993366126" duration="19286000" />
       <workItem from="1753082896300" duration="9058000" />
       <workItem from="1753172620872" duration="10193000" />
-      <workItem from="1753232001317" duration="20664000" />
+      <workItem from="1753232001317" duration="22036000" />
     </task>
     <servers />
   </component>
