@@ -8,10 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="discoveryservice" />
+        <module name="monitoradmin" />
         <module name="configservice" />
         <module name="gatewayservice" />
       </profile>
-      <profile name="Annotation profile for notificationservice" enabled="true">
+      <profile name="Annotation profile for statisticservice" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -30,6 +31,7 @@
       <module name="configservice" options="-parameters" />
       <module name="discoveryservice" options="-parameters" />
       <module name="gatewayservice" options="-parameters" />
+      <module name="monitoradmin" options="-parameters" />
       <module name="notificationservice" options="-parameters" />
       <module name="statisticservice" options="-parameters" />
     </option>

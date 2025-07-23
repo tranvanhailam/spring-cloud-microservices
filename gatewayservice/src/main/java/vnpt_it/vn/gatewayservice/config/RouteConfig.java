@@ -4,15 +4,17 @@ import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import vnpt_it.vn.gatewayservice.filter.LoggingGatewayFilterFactory;
 
 @Configuration
 public class RouteConfig {
     @Bean
-    public RouteLocator routeLocator(RouteLocatorBuilder builder) {
+    public RouteLocator routeLocator(RouteLocatorBuilder builder, LoggingGatewayFilterFactory loggingGatewayFilterFactory) {
         return builder.routes()
                 .route("account-service-router",
                         r -> r.path("/user/**")
-                                .filters(f -> f.stripPrefix(1))
+                                .filters(f -> f.stripPrefix(1)
+                                        .filter(loggingGatewayFilterFactory.apply(new LoggingGatewayFilterFactory.Config())))
 //                                        .circuitBreaker(c -> c.setName("CircuitBreaker")
 //                                                .getFallbackUri()))
                                 .uri("lb://account-service"))
