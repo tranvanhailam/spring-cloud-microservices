@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Bean;
 @EnableFeignClients
 @EnableDiscoveryClient
 public class AccountserviceApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(AccountserviceApplication.class, args);
 	}

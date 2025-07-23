@@ -5,26 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5711b4b2-e1e4-43b2-a03e-6a8cebe326df" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/configservice/src/main/resources/share/discovery-service.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configservice/src/main/resources/share/gateway-service.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gatewayservice/src/main/java/vnpt_it/vn/gatewayservice/config/RouteConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gatewayservice/src/main/java/vnpt_it/vn/gatewayservice/config/SwaggerConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accountservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/AccountserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/AccountserviceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/client/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/client/NotificationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/client/StatisticService.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/client/StatisticService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/service/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/service/AccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/service/AccountServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accountservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/configservice/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configservice/src/main/resources/share/account-service.properties" beforeDir="false" afterPath="$PROJECT_DIR$/configservice/src/main/resources/share/account-service.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configservice/src/main/resources/share/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/configservice/src/main/resources/share/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notificationservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notificationservice/src/main/java/vnpt_it/vn/notificationservice/NotificationserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/src/main/java/vnpt_it/vn/notificationservice/NotificationserviceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/statisticservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/statisticservice/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/statisticservice/src/main/java/vnpt_it/vn/statisticservice/StatisticserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticservice/src/main/java/vnpt_it/vn/statisticservice/StatisticserviceApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +63,7 @@
     &quot;Spring Boot.AccountserviceApplication2.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.ConfigserviceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.DiscoveryserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.GatewayserviceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.NotificationserviceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.StatisticserviceApplication.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
@@ -115,7 +104,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.AccountserviceApplication2">
+  <component name="RunManager" selected="Spring Boot.GatewayserviceApplication">
     <configuration name="AccountserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="accountservice" />
@@ -151,6 +140,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="GatewayserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="gatewayservice" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="vnpt_it.vn.gatewayservice.GatewayserviceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="NotificationserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="notificationservice" />
@@ -163,7 +160,7 @@
       <option name="ALTERNATIVE_JRE_PATH" value="17" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <envs>
-        <env name="server.port" value="7072" />
+        <env name="server.port" value="8082" />
       </envs>
       <module name="statisticservice" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="vnpt_it.vn.statisticservice.StatisticserviceApplication" />
@@ -171,22 +168,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StatisticserviceApplication2" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="statisticservice" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="vnpt_it.vn.statisticservice.StatisticserviceApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
+      <item itemvalue="Spring Boot.GatewayserviceApplication" />
       <item itemvalue="Spring Boot.AccountserviceApplication" />
       <item itemvalue="Spring Boot.AccountserviceApplication2" />
       <item itemvalue="Spring Boot.StatisticserviceApplication" />
       <item itemvalue="Spring Boot.ConfigserviceApplication" />
       <item itemvalue="Spring Boot.DiscoveryserviceApplication" />
       <item itemvalue="Spring Boot.NotificationserviceApplication" />
-      <item itemvalue="Spring Boot.StatisticserviceApplication2" />
     </list>
   </component>
   <component name="SharedIndexes">
@@ -208,7 +197,8 @@
       <workItem from="1752907473765" duration="18790000" />
       <workItem from="1752993366126" duration="19286000" />
       <workItem from="1753082896300" duration="9058000" />
-      <workItem from="1753172620872" duration="611000" />
+      <workItem from="1753172620872" duration="10193000" />
+      <workItem from="1753232001317" duration="7562000" />
     </task>
     <servers />
   </component>

@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="discoveryservice" />
         <module name="configservice" />
+        <module name="gatewayservice" />
       </profile>
       <profile name="Annotation profile for notificationservice" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -28,6 +29,7 @@
       <module name="accountservice" options="-parameters" />
       <module name="configservice" options="-parameters" />
       <module name="discoveryservice" options="-parameters" />
+      <module name="gatewayservice" options="-parameters" />
       <module name="notificationservice" options="-parameters" />
       <module name="statisticservice" options="-parameters" />
     </option>
