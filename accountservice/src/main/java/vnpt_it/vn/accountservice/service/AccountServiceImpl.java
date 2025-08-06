@@ -2,6 +2,9 @@ package vnpt_it.vn.accountservice.service;
 
 import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vnpt_it.vn.accountservice.client.NotificationService;
@@ -27,18 +30,22 @@ public class AccountServiceImpl implements AccountService {
     private final StatisticService statisticService;
     private final NotificationService notificationService;
     private final ModelMapper modelMapper;
+    private final PasswordEncoder passwordEncoder;
+    private final Logger logger= LoggerFactory.getLogger(AccountServiceImpl.class);
 
-    public AccountServiceImpl(AccountRepository accountRepository, StatisticService statisticService, NotificationService notificationService, ModelMapper modelMapper) {
+    public AccountServiceImpl(AccountRepository accountRepository, StatisticService statisticService, NotificationService notificationService, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
         this.accountRepository = accountRepository;
         this.statisticService = statisticService;
         this.notificationService = notificationService;
         this.modelMapper = modelMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public void addAccount(AccountDTO accountDTO) {
+        logger.info(">>>>>>>>>> AccountService AccountServiceImpl: addAccount");
         Account account = this.modelMapper.mapAccountDTOToAccount(accountDTO, false);
-//        account.setPassword(new BCrypt);
+
         this.accountRepository.save(account);
         //create statistic
         this.statisticService.createStatistic(new StatisticDTO("Account " + accountDTO.getUsername() + " is created"));
@@ -76,6 +83,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public List<AccountDTO> getAccounts() {
+        logger.info(">>>>>>>>>> AccountService AccountServiceImpl: getAccounts");
         List<Account> accounts = this.accountRepository.findAll();
         List<AccountDTO> accountDTOS = accounts.stream().map(account ->
                 this.modelMapper.mapAccountToAccountDTO(account, false)

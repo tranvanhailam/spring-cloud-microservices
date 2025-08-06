@@ -28,6 +28,7 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public void sendEmail(MessageDTO messageDTO) {
+        logger.info(">>>>>>>>>> NotificationService NotificationServiceImpl: sendEmail");
 
         try {
             logger.info("Start ... sending email");

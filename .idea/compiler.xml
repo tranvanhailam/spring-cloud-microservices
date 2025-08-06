@@ -21,6 +21,7 @@
         </processorPath>
         <module name="statisticservice" />
         <module name="accountservice" />
+        <module name="authservice" />
         <module name="notificationservice" />
       </profile>
     </annotationProcessing>
@@ -28,6 +29,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="accountservice" options="-parameters" />
+      <module name="authservice" options="-parameters" />
       <module name="configservice" options="-parameters" />
       <module name="discoveryservice" options="-parameters" />
       <module name="gatewayservice" options="-parameters" />

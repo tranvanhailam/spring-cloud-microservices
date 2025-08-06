@@ -5,8 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5711b4b2-e1e4-43b2-a03e-6a8cebe326df" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configservice/src/main/resources/share/monitor-admin.properties" beforeDir="false" afterPath="$PROJECT_DIR$/configservice/src/main/resources/share/monitor-admin.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/config/FeignConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/config/FeignConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/config/NotificationFeignClientConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/config/NotificationFeignClientConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/config/StatisticFeignClientConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/config/StatisticFeignClientConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/exception/ExceptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/exception/ExceptionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/service/AccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/service/AccountServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/util/ModelMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/util/ModelMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/example/authservice/config/ServerSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/example/authservice/config/ServerSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/example/authservice/domain/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/example/authservice/domain/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/example/authservice/repository/AccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/example/authservice/repository/AccountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/example/authservice/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/example/authservice/service/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/configservice/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/configservice/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discoveryservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/discoveryservice/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gatewayservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gatewayservice/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitoradmin/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/monitoradmin/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notificationservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notificationservice/src/main/java/vnpt_it/vn/notificationservice/controller/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/src/main/java/vnpt_it/vn/notificationservice/controller/NotificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notificationservice/src/main/java/vnpt_it/vn/notificationservice/service/NotificationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/src/main/java/vnpt_it/vn/notificationservice/service/NotificationServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notificationservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/statisticservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/statisticservice/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/statisticservice/src/main/java/vnpt_it/vn/statisticservice/controller/StatisticController.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticservice/src/main/java/vnpt_it/vn/statisticservice/controller/StatisticController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/statisticservice/src/main/java/vnpt_it/vn/statisticservice/service/StatisticServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticservice/src/main/java/vnpt_it/vn/statisticservice/service/StatisticServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/statisticservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/statisticservice/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,43 +73,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.DiscoveryserviceApplication.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.AccountserviceApplication.executor": "Run",
-    "Spring Boot.AccountserviceApplication2.executor": "Run",
-    "Spring Boot.ConfigserviceApplication.executor": "Run",
-    "Spring Boot.DiscoveryserviceApplication.executor": "Run",
-    "Spring Boot.GatewayserviceApplication.executor": "Run",
-    "Spring Boot.MonitoradminApplication.executor": "Run",
-    "Spring Boot.NotificationserviceApplication.executor": "Run",
-    "Spring Boot.StatisticserviceApplication.executor": "Run",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/haila/Documents/Microservices - Project/spring-cloud-microservices/accountservice/src/main/java/vnpt_it/vn/accountservice",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "spring",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.DiscoveryserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AccountserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.AccountserviceApplication2.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.AuthserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ConfigserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.DiscoveryserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.GatewayserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MonitoradminApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.NotificationserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.StatisticserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/haila/Documents/Microservices - Project/spring-cloud-microservices/authservice/src/main/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;spring&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\haila\Documents\Microservices - Project\spring-cloud-microservices\authservice\src\main\resources" />
       <recent name="C:\Users\haila\Documents\Microservices - Project\spring-cloud-microservices\accountservice\src\main\java\vnpt_it\vn\accountservice" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -100,7 +135,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.MonitoradminApplication">
+  <component name="RunManager" selected="Spring Boot.AuthserviceApplication">
     <configuration name="AccountserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="accountservice" />
@@ -117,6 +152,14 @@
       </envs>
       <module name="accountservice" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="vnpt_it.vn.accountservice.AccountserviceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="authservice" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.authservice.AuthserviceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -173,6 +216,7 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Spring Boot.AuthserviceApplication" />
       <item itemvalue="Spring Boot.MonitoradminApplication" />
       <item itemvalue="Spring Boot.GatewayserviceApplication" />
       <item itemvalue="Spring Boot.AccountserviceApplication" />
@@ -203,7 +247,19 @@
       <workItem from="1752993366126" duration="19286000" />
       <workItem from="1753082896300" duration="9058000" />
       <workItem from="1753172620872" duration="10193000" />
-      <workItem from="1753232001317" duration="22036000" />
+      <workItem from="1753232001317" duration="26286000" />
+      <workItem from="1753350583734" duration="12027000" />
+      <workItem from="1753599262193" duration="616000" />
+      <workItem from="1753666020678" duration="27927000" />
+      <workItem from="1753838415500" duration="11364000" />
+      <workItem from="1753857561611" duration="15362000" />
+      <workItem from="1753948452108" duration="5079000" />
+      <workItem from="1754030564673" duration="4062000" />
+      <workItem from="1754129103110" duration="1473000" />
+      <workItem from="1754203625634" duration="6069000" />
+      <workItem from="1754291647476" duration="5853000" />
+      <workItem from="1754372521784" duration="2860000" />
+      <workItem from="1754461818795" duration="3088000" />
     </task>
     <servers />
   </component>

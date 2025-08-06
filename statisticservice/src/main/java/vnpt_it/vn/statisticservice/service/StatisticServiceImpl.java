@@ -1,5 +1,7 @@
 package vnpt_it.vn.statisticservice.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import vnpt_it.vn.statisticservice.domain.Statistic;
 import vnpt_it.vn.statisticservice.model.StatisticDTO;
@@ -15,6 +17,7 @@ public class StatisticServiceImpl implements StatisticService {
 
     private final StatisticRepository statisticRepository;
     private final ModelMapper modelMapper;
+    private final Logger logger = LoggerFactory.getLogger(StatisticServiceImpl.class);
 
     public StatisticServiceImpl(StatisticRepository statisticRepository, ModelMapper modelMapper) {
         this.statisticRepository = statisticRepository;
@@ -23,6 +26,7 @@ public class StatisticServiceImpl implements StatisticService {
 
     @Override
     public void addStatistic(StatisticDTO statisticDTO) {
+        logger.info(">>>>>>>>>> StatisticService StatisticServiceImpl: addStatistic");
         Statistic statistic = this.modelMapper.mapStatisticDTOToStatistic(statisticDTO);
         this.statisticRepository.save(statistic);
     }

@@ -1,5 +1,6 @@
-package vnpt_it.vn.accountservice.controller;
+package vnpt_it.vn.accountservice.exception;
 
+import feign.FeignException;
 import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,14 +21,19 @@ import java.util.Map;
 public class ExceptionController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleAllException(Exception ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
-    }
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity<String> handleAllException(Exception ex) {
+//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+//    }
 
     @ExceptionHandler(CallNotPermittedException.class)
     public ResponseEntity<String> handleCallNotPermittedException(CallNotPermittedException ex) {
         return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(FeignException.class)
+    public ResponseEntity<String> handleFeignException(FeignException ex) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
     }
 
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
