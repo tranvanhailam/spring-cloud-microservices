@@ -40,6 +40,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorizeRequests -> authorizeRequests
+                        .requestMatchers("/accounts").authenticated()
                         .anyRequest().permitAll())
                 .cors(Customizer.withDefaults())
                 .oauth2ResourceServer(oauth2ResourceServer -> oauth2ResourceServer
@@ -54,7 +55,7 @@ public class SecurityConfig {
         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(jwt -> {
             List<String> roles = Optional.ofNullable(jwt.getClaimAsStringList("roles"))
                     .orElse(List.of()).stream().map(role -> "ROLE_" + role).toList();
-            List<String> scopes = Optional.ofNullable(jwt.getClaimAsStringList("scopes"))
+            List<String> scopes = Optional.ofNullable(jwt.getClaimAsStringList("scope"))
                     .orElse(List.of()).stream().map(scope -> "SCOPE_" + scope).toList();
             // Tạo list mutable thay vì dùng List.of()
             List<String> authorities = new ArrayList<>();
@@ -68,21 +69,4 @@ public class SecurityConfig {
         return jwtAuthenticationConverter;
     }
 
-//    @Bean
-//    public OAuth2AuthorizedClientManager authorizedClientManager(
-//            ClientRegistrationRepository clientRegistrationRepository,
-//            OAuth2AuthorizedClientRepository authorizedClientRepository) {
-//
-//        OAuth2AuthorizedClientProvider authorizedClientProvider =
-//                OAuth2AuthorizedClientProviderBuilder.builder()
-//                        .clientCredentials()
-//                        .build();
-//
-//        DefaultOAuth2AuthorizedClientManager authorizedClientManager =
-//                new DefaultOAuth2AuthorizedClientManager(
-//                        clientRegistrationRepository, authorizedClientRepository);
-//        authorizedClientManager.setAuthorizedClientProvider(authorizedClientProvider);
-//
-//        return authorizedClientManager;
-//    }
 }

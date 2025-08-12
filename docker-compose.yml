@@ -1,0 +1,146 @@
+services:
+#  configservice:
+#    build:
+#      context: configservice
+#      dockerfile: Dockerfile
+#    image: config-service
+#    ports:
+#      - 8888:8888
+#    volumes:
+#      - C:/Users/DINHCUONG/Documents/GitHub/springcloud/tutorials-2024/section6/configservice/src/main/resources/shared:/git-repo
+#    env_file:
+#      - local.env
+#
+#  discoveryservice:
+#    build:
+#      context: discoveryservice
+#      dockerfile: Dockerfile
+#    image: discovery-service
+#    ports:
+#      - 9999:9999
+#    restart: on-failure
+#    env_file:
+#      - local.env
+#
+#  monitoradmin:
+#    build:
+#      context: monitoradmin
+#      dockerfile: Dockerfile
+#    image: monitor-service
+#    ports:
+#      - 9001:9001
+#    restart: on-failure
+#    env_file:
+#      - local.env
+#
+#  gatewayservice:
+#    build:
+#      context: gatewayservice
+#      dockerfile: Dockerfile
+#    image: gateway-service
+#    ports:
+#      - 8080:8080
+#    restart: on-failure
+#    env_file:
+#      - local.env
+#
+#  authservice:
+#    build:
+#      context: authservice
+#      dockerfile: Dockerfile
+#    image: auth-service
+#    ports:
+#      - 9000:9000
+#    restart: on-failure
+#    env_file:
+#      - local.env
+#
+#  accountservice:
+#    build:
+#      context: accountservice
+#      dockerfile: Dockerfile
+#    image: account-service
+#    ports:
+#      - 9081:9081
+#    restart: on-failure
+#    env_file:
+#      - local.env
+#
+#  statisticservice:
+#    build:
+#      context: statisticservice
+#      dockerfile: Dockerfile
+#    image: statistic-service
+#    ports:
+#      - 9082:9082
+#    #    volumes:
+#    #      - D:\userfiles\:/userfiles/
+#    restart: on-failure
+#    env_file:
+#      - local.env
+#
+#  notificationservice:
+#    build:
+#      context: notificationservice
+#      dockerfile: Dockerfile
+#    image: notification-service
+#    ports:
+#      - 9083:9083
+#    restart: on-failure
+#    env_file:
+#      - local.env
+#
+#  clientregisterservice:
+#    build:
+#      context: clientregisterservice
+#      dockerfile: Dockerfile
+#    image: client-register-service
+#    ports:
+#      - 9089:9089
+#    restart: on-failure
+#    env_file:
+#      - local.env
+#
+#  fereact:
+#    build:
+#      context: fereact
+#      dockerfile: Dockerfile
+#      args:
+#        REACT_APP_HOST_IP_ADDRESS: 192.168.1.94
+#    image: fereact
+#    ports:
+#      - 3000:80
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus-grafana/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  loki:
+    image: grafana/loki
+    container_name: loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+
+  tempo:
+    image: grafana/tempo
+    container_name: tempo
+    ports:
+      - "3200:3200" #tempo
+      - "9411:9411" # zipkin
+    command: -config.file=/etc/tempo.yaml
+    volumes:
+      - ./prometheus-grafana/tempo/tempo.yml:/etc/tempo.yaml
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "4000:3000"
+    restart: unless-stopped
+    volumes:
+      - ./prometheus-grafana/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources

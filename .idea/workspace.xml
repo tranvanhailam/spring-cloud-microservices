@@ -4,39 +4,91 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5711b4b2-e1e4-43b2-a03e-6a8cebe326df" name="Changes" comment="">
+    <list default="true" id="5711b4b2-e1e4-43b2-a03e-6a8cebe326df" name="Changes" comment="Config security with Oauth2">
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/auth/AuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/auth/AuthorizationCodeFeignConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/auth/ResUserInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/company/ClientCredentialFeignConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/company/CompanyDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/company/CompanyService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/controller/RoleController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/domain/AccountDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/domain/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/domain/mapper/AccountMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/domain/res/ResAccountDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/domain/res/RestResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/domain/res/ResultPaginationDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/exception/ExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/exception/NotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/repository/RoleRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/service/RoleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/service/RoleServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/util/FormatRestResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/util/annotation/ApiMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/util/constant/GenderEnum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/util/error/FeignClientErrorDecoder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/util/error/GlobalException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authservice/src/main/java/com/example/authservice/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authservice/src/main/java/com/example/authservice/domain/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authservice/src/main/java/com/example/authservice/util/constant/GenderEnum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/companyservice/src/main/java/vnpt_it/vn/companyservice/auth/AuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/companyservice/src/main/java/vnpt_it/vn/companyservice/auth/AuthorizationCodeFeignConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/companyservice/src/main/java/vnpt_it/vn/companyservice/auth/ResUserInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/companyservice/src/main/java/vnpt_it/vn/companyservice/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/companyservice/src/main/java/vnpt_it/vn/companyservice/controller/CompanyController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/companyservice/src/main/java/vnpt_it/vn/companyservice/domain/Company.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/companyservice/src/main/java/vnpt_it/vn/companyservice/domain/res/RestResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/companyservice/src/main/java/vnpt_it/vn/companyservice/domain/res/ResultPaginationDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/companyservice/src/main/java/vnpt_it/vn/companyservice/exception/NotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/companyservice/src/main/java/vnpt_it/vn/companyservice/repository/CompanyRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/companyservice/src/main/java/vnpt_it/vn/companyservice/service/CompanyService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/companyservice/src/main/java/vnpt_it/vn/companyservice/service/CompanyServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/companyservice/src/main/java/vnpt_it/vn/companyservice/util/FormatRestResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/companyservice/src/main/java/vnpt_it/vn/companyservice/util/annotation/ApiMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/companyservice/src/main/java/vnpt_it/vn/companyservice/util/error/GlobalException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configservice/src/main/resources/share/company-service.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accountservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/client/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/notification/NotificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/client/NotificationServiceFallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/notification/NotificationServiceFallback.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/client/StatisticService.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/statistic/StatisticService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/client/StatisticServiceFallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/statistic/StatisticServiceFallback.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/config/FeignConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/config/FeignConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/config/NotificationFeignClientConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/config/NotificationFeignClientConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/config/NotificationFeignClientConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/notification/NotificationFeignClientConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/config/StatisticFeignClientConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/config/StatisticFeignClientConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/config/StatisticFeignClientConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/statistic/StatisticFeignClientConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/exception/ExceptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/exception/ExceptionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/domain/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/domain/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/exception/ExceptionController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/model/AccountDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/model/MessageDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/notification/MessageDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/model/StatisticDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/statistic/StatisticDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/repository/AccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/repository/AccountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/service/AccountService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/service/AccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/service/AccountServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/util/ModelMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/util/ModelMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountservice/src/main/java/vnpt_it/vn/accountservice/util/ModelMapper.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/accountservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/accountservice/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/example/authservice/config/ServerSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/example/authservice/config/ServerSecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/example/authservice/domain/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/example/authservice/domain/Account.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/example/authservice/repository/AccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/example/authservice/repository/AccountRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/example/authservice/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/example/authservice/service/AccountService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/configservice/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/configservice/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discoveryservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/discoveryservice/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gatewayservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gatewayservice/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitoradmin/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/monitoradmin/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configservice/src/main/resources/share/account-service.properties" beforeDir="false" afterPath="$PROJECT_DIR$/configservice/src/main/resources/share/account-service.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configservice/src/main/resources/share/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/configservice/src/main/resources/share/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configservice/src/main/resources/share/auth-service.properties" beforeDir="false" afterPath="$PROJECT_DIR$/configservice/src/main/resources/share/auth-service.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configservice/src/main/resources/share/statistic-service.properties" beforeDir="false" afterPath="$PROJECT_DIR$/configservice/src/main/resources/share/statistic-service.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discoveryservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/discoveryservice/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gatewayservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gatewayservice/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gatewayservice/src/main/java/vnpt_it/vn/gatewayservice/config/RouteConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gatewayservice/src/main/java/vnpt_it/vn/gatewayservice/config/RouteConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myapp.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myapp.log.2025-07-25.0.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myapp.log.2025-07-29.0.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myapp.log.2025-07-30.0.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myapp.log.2025-07-30.091020253772200.tmp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/notificationservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notificationservice/src/main/java/vnpt_it/vn/notificationservice/controller/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/src/main/java/vnpt_it/vn/notificationservice/controller/NotificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notificationservice/src/main/java/vnpt_it/vn/notificationservice/service/NotificationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/src/main/java/vnpt_it/vn/notificationservice/service/NotificationServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notificationservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/statisticservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/statisticservice/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/statisticservice/src/main/java/vnpt_it/vn/statisticservice/controller/StatisticController.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticservice/src/main/java/vnpt_it/vn/statisticservice/controller/StatisticController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/statisticservice/src/main/java/vnpt_it/vn/statisticservice/service/StatisticServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticservice/src/main/java/vnpt_it/vn/statisticservice/service/StatisticServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/statisticservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/statisticservice/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +98,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
+        <option value="Exception" />
         <option value="Interface" />
         <option value="Class" />
       </list>
@@ -53,6 +107,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="SYNC" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -73,56 +128,66 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.DiscoveryserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.AccountserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.AccountserviceApplication2.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.AuthserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ConfigserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.DiscoveryserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.GatewayserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.MonitoradminApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.NotificationserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.StatisticserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/haila/Documents/Microservices - Project/spring-cloud-microservices/authservice/src/main/resources&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;spring&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DiscoveryserviceApplication.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.AccountserviceApplication.executor": "Run",
+    "Spring Boot.AccountserviceApplication2.executor": "Run",
+    "Spring Boot.AuthserviceApplication.executor": "Run",
+    "Spring Boot.CompanyserviceApplication.executor": "Run",
+    "Spring Boot.ConfigserviceApplication.executor": "Run",
+    "Spring Boot.DiscoveryserviceApplication.executor": "Run",
+    "Spring Boot.GatewayserviceApplication.executor": "Run",
+    "Spring Boot.MonitoradminApplication.executor": "Run",
+    "Spring Boot.NotificationserviceApplication.executor": "Run",
+    "Spring Boot.RoleserviceApplication.executor": "Run",
+    "Spring Boot.StatisticserviceApplication.executor": "Run",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/haila/Documents/Microservices - Project/spring-cloud-microservices/authservice/src/main/java/com/example/authservice/util",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "spring",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\haila\Documents\Microservices - Project\spring-cloud-microservices\authservice\src\main\resources" />
-      <recent name="C:\Users\haila\Documents\Microservices - Project\spring-cloud-microservices\accountservice\src\main\java\vnpt_it\vn\accountservice" />
+      <recent name="C:\Users\haila\Documents\Microservices - Project\spring-cloud-microservices\authservice\src\main\java\com\example\authservice\util" />
+      <recent name="C:\Users\haila\Documents\Microservices - Project\spring-cloud-microservices\authservice\src\main\java\com\example\authservice\domain" />
+      <recent name="C:\Users\haila\Documents\Microservices - Project\spring-cloud-microservices\accountservice\src\main\java\vnpt_it\vn\accountservice\service" />
+      <recent name="C:\Users\haila\Documents\Microservices - Project\spring-cloud-microservices\accountservice\src\main\java\vnpt_it\vn\accountservice\util\" />
+      <recent name="C:\Users\haila\Documents\Microservices - Project\spring-cloud-microservices\accountservice\src\main\java\vnpt_it\vn\accountservice\domain" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\haila\Documents\Microservices - Project\spring-cloud-microservices\accountservice\src\main\java\vnpt_it\vn\accountservice\util" />
       <recent name="C:\Users\haila\Documents\Microservices - Project\spring-cloud-microservices\accountservice\src\main\java\vnpt_it\vn\accountservice\model" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="vnpt_it.vn.accountservice.model" />
+      <recent name="vnpt_it.vn.accountservice.repository" />
+      <recent name="vnpt_it.vn.accountservice.domain" />
+      <recent name="vnpt_it.vn.accountservice.controller" />
+      <recent name="vnpt_it.vn.accountservice.exception" />
+      <recent name="vnpt_it.vn.accountservice.config" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -135,21 +200,9 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.AuthserviceApplication">
+  <component name="RunManager" selected="Spring Boot.CompanyserviceApplication">
     <configuration name="AccountserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="accountservice" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="vnpt_it.vn.accountservice.AccountserviceApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AccountserviceApplication2" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <option name="ALTERNATIVE_JRE_PATH" value="17" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <envs>
-        <env name="server.port" value="7071" />
-      </envs>
       <module name="accountservice" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="vnpt_it.vn.accountservice.AccountserviceApplication" />
       <method v="2">
@@ -160,6 +213,14 @@
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="authservice" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.authservice.AuthserviceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CompanyserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="companyservice" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="vnpt_it.vn.companyservice.CompanyserviceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -187,18 +248,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MonitoradminApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="monitoradmin" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="vnpt_it.vn.monitoradmin.MonitoradminApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="NotificationserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="notificationservice" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="vnpt_it.vn.notificationservice.NotificationserviceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SkillserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="skillservice" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="vnpt_it.vn.skillservice.SkillserviceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -216,11 +277,11 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Spring Boot.SkillserviceApplication" />
+      <item itemvalue="Spring Boot.CompanyserviceApplication" />
       <item itemvalue="Spring Boot.AuthserviceApplication" />
-      <item itemvalue="Spring Boot.MonitoradminApplication" />
       <item itemvalue="Spring Boot.GatewayserviceApplication" />
       <item itemvalue="Spring Boot.AccountserviceApplication" />
-      <item itemvalue="Spring Boot.AccountserviceApplication2" />
       <item itemvalue="Spring Boot.StatisticserviceApplication" />
       <item itemvalue="Spring Boot.ConfigserviceApplication" />
       <item itemvalue="Spring Boot.DiscoveryserviceApplication" />
@@ -259,12 +320,41 @@
       <workItem from="1754203625634" duration="6069000" />
       <workItem from="1754291647476" duration="5853000" />
       <workItem from="1754372521784" duration="2860000" />
-      <workItem from="1754461818795" duration="3088000" />
+      <workItem from="1754461818795" duration="3971000" />
+      <workItem from="1754527804339" duration="25749000" />
+      <workItem from="1754614981667" duration="13149000" />
+      <workItem from="1754729256330" duration="19175000" />
+      <workItem from="1754875130666" duration="20536000" />
+      <workItem from="1754961653534" duration="21201000" />
     </task>
+    <task id="LOCAL-00001" summary="Config security with Oauth2">
+      <option name="closed" value="true" />
+      <created>1754497247858</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1754497247858</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Config security with Oauth2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Config security with Oauth2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,22 +1,26 @@
 package vnpt_it.vn.accountservice.service;
 
-import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import feign.FeignException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import vnpt_it.vn.accountservice.client.NotificationService;
-import vnpt_it.vn.accountservice.client.NotificationServiceFallback;
-import vnpt_it.vn.accountservice.client.StatisticService;
-import vnpt_it.vn.accountservice.client.StatisticServiceFallback;
+import vnpt_it.vn.accountservice.auth.AuthService;
+import vnpt_it.vn.accountservice.company.CompanyDTO;
+import vnpt_it.vn.accountservice.company.CompanyService;
 import vnpt_it.vn.accountservice.domain.Account;
-import vnpt_it.vn.accountservice.model.AccountDTO;
-import vnpt_it.vn.accountservice.model.MessageDTO;
-import vnpt_it.vn.accountservice.model.StatisticDTO;
+import vnpt_it.vn.accountservice.domain.Role;
+import vnpt_it.vn.accountservice.domain.mapper.AccountMapper;
+import vnpt_it.vn.accountservice.domain.res.ResAccountDTO;
+import vnpt_it.vn.accountservice.domain.res.ResultPaginationDTO;
+import vnpt_it.vn.accountservice.exception.ExistsException;
+import vnpt_it.vn.accountservice.exception.NotFoundException;
 import vnpt_it.vn.accountservice.repository.AccountRepository;
-import vnpt_it.vn.accountservice.util.ModelMapper;
+import vnpt_it.vn.accountservice.repository.RoleRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,81 +31,139 @@ import java.util.stream.Collectors;
 public class AccountServiceImpl implements AccountService {
 
     private final AccountRepository accountRepository;
-    private final StatisticService statisticService;
-    private final NotificationService notificationService;
-    private final ModelMapper modelMapper;
+    private final AuthService authService;
     private final PasswordEncoder passwordEncoder;
-    private final Logger logger= LoggerFactory.getLogger(AccountServiceImpl.class);
+    private final RoleService roleService;
+    private final CompanyService companyService;
+    private final AccountMapper accountMapper;
 
-    public AccountServiceImpl(AccountRepository accountRepository, StatisticService statisticService, NotificationService notificationService, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
+    public AccountServiceImpl(AccountRepository accountRepository, AuthService authService, PasswordEncoder passwordEncoder, RoleService roleService, CompanyService companyService, AccountMapper accountMapper) {
         this.accountRepository = accountRepository;
-        this.statisticService = statisticService;
-        this.notificationService = notificationService;
-        this.modelMapper = modelMapper;
+        this.authService = authService;
         this.passwordEncoder = passwordEncoder;
+        this.roleService = roleService;
+        this.companyService = companyService;
+        this.accountMapper = accountMapper;
     }
 
-    @Override
-    public void addAccount(AccountDTO accountDTO) {
-        logger.info(">>>>>>>>>> AccountService AccountServiceImpl: addAccount");
-        Account account = this.modelMapper.mapAccountDTOToAccount(accountDTO, false);
-
-        this.accountRepository.save(account);
-        //create statistic
-        this.statisticService.createStatistic(new StatisticDTO("Account " + accountDTO.getUsername() + " is created"));
-        //send email
-        MessageDTO messageDTO = new MessageDTO();
-        messageDTO.setFrom("hailamtranvan@gmai.com");
-        messageDTO.setTo("hailamtranvan@gmail.com");
-        messageDTO.setToName("Hai Lam");
-        messageDTO.setSubject("No reply");
-        messageDTO.setContent("Welcome to VNPT IT");
-        this.notificationService.sendNotification(messageDTO);
-    }
 
     @Override
-    public void updateAccount(AccountDTO accountDTO) {
-        Optional<Account> optionalAccount = this.accountRepository.findById(accountDTO.getId());
-        if (optionalAccount.isPresent()) {
-            Account account = this.modelMapper.mapAccountDTOToAccount(accountDTO, false);
-            this.accountRepository.save(account);
+    public ResAccountDTO handleCreateAccount(Account account) throws ExistsException, NotFoundException {
+        if (this.accountRepository.existsByEmail(account.getEmail())) {
+            throw new ExistsException("Account with email " + account.getEmail() + " already exists");
         }
-        //create statistic
-        this.statisticService.createStatistic(new StatisticDTO("Account " + accountDTO.getUsername() + " is updated"));
+        account.setPassword(this.passwordEncoder.encode(account.getPassword()));
+        account.setCreatedBy(this.authService.getUserInfo().getSub());
+        if (account.getRole() != null) {
+            Role role = this.roleService.handleGetRoleById(account.getRole().getId());
+            account.setRole(role);
+        }
+
+        CompanyDTO companyDTO = null;
+        if (account.getCompanyId() != 0) {
+            companyDTO = this.companyService.getCompanyById(account.getCompanyId()).getData();
+        }
+        return this.accountMapper.mapAccountToResAccountDTO(this.accountRepository.save(account), companyDTO);
     }
 
     @Override
-    public void deleteAccount(long id) {
+    public ResAccountDTO handleUpdateAccount(Account account) throws NotFoundException, ExistsException {
+        Optional<Account> optionalAccount = this.accountRepository.findById(account.getId());
+        if (!optionalAccount.isPresent()) {
+            throw new NotFoundException("Account with id " + account.getId() + " not found");
+        }
+        if (!account.getEmail().equals(optionalAccount.get().getEmail()) && this.accountRepository.existsByEmail(account.getEmail())) {
+            throw new ExistsException("Account with email " + account.getEmail() + " already exists");
+        }
+        Account accountToUpdate = optionalAccount.get();
+        accountToUpdate.setName(account.getName());
+        accountToUpdate.setEmail(account.getEmail());
+        accountToUpdate.setAddress(account.getAddress());
+        accountToUpdate.setAge(account.getAge());
+        accountToUpdate.setGender(account.getGender());
+        accountToUpdate.setUpdatedBy(this.authService.getUserInfo().getSub());
+        if (account.getRole() != null) {
+            Role role = this.roleService.handleGetRoleById(account.getRole().getId());
+            accountToUpdate.setRole(role);
+        } else accountToUpdate.setRole(null);
+
+        CompanyDTO companyDTO = null;
+        if (account.getCompanyId() != 0) {
+            companyDTO = this.companyService.getCompanyById(account.getCompanyId()).getData();
+            accountToUpdate.setCompanyId(account.getCompanyId());
+        }
+        return this.accountMapper.mapAccountToResAccountDTO(this.accountRepository.save(accountToUpdate), companyDTO);
+    }
+
+    @Override
+    public void handleDeleteAccount(long id) throws NotFoundException {
         Optional<Account> optionalAccount = this.accountRepository.findById(id);
-        if (optionalAccount.isPresent()) {
-            this.accountRepository.delete(optionalAccount.get());
-            //create statistic
-            this.statisticService.createStatistic(new StatisticDTO("Account " + optionalAccount.get().getUsername() + " is deleted"));
+        if (!optionalAccount.isPresent()) {
+            throw new NotFoundException("Account with id " + id + " not found");
         }
-
+        this.accountRepository.deleteById(id);
     }
 
     @Override
-    public List<AccountDTO> getAccounts() {
-        logger.info(">>>>>>>>>> AccountService AccountServiceImpl: getAccounts");
-        List<Account> accounts = this.accountRepository.findAll();
-        List<AccountDTO> accountDTOS = accounts.stream().map(account ->
-                this.modelMapper.mapAccountToAccountDTO(account, false)
-        ).collect(Collectors.toUnmodifiableList());
-        return accountDTOS;
-    }
-
-    @Override
-    public AccountDTO getAccount(long id) {
+    public ResAccountDTO handleGetAccountById(long id) throws NotFoundException {
         Optional<Account> optionalAccount = this.accountRepository.findById(id);
-        if (optionalAccount.isPresent()) {
-            return this.modelMapper.mapAccountToAccountDTO(optionalAccount.get(), false);
+        if (!optionalAccount.isPresent()) {
+            throw new NotFoundException("Account with id " + id + " not found");
         }
-        return null;
+        Account account = optionalAccount.get();
+        CompanyDTO companyDTO = null;
+        if (account.getCompanyId() != 0) {
+            companyDTO = this.companyService.getCompanyById(account.getCompanyId()).getData();
+        }
+        return this.accountMapper.mapAccountToResAccountDTO(this.accountRepository.save(account), companyDTO);
     }
 
     @Override
-    public void updatePassword(AccountDTO accountDTO) {
+    public ResultPaginationDTO handleGetAllAccounts(Specification<Account> specification, Pageable pageable) {
+        Page<Account> accountPage = this.accountRepository.findAll(specification, pageable);
 
+        List<ResAccountDTO> accounts = accountPage.getContent().stream()
+                .map(account -> {
+                    ResAccountDTO resAccountDTO = new ResAccountDTO();
+                    resAccountDTO.setName(account.getName());
+                    resAccountDTO.setEmail(account.getEmail());
+                    resAccountDTO.setAddress(account.getAddress());
+                    resAccountDTO.setAge(account.getAge());
+                    resAccountDTO.setGender(account.getGender());
+                    resAccountDTO.setCreatedAt(account.getCreatedAt());
+                    resAccountDTO.setUpdatedAt(account.getUpdatedAt());
+                    resAccountDTO.setCreatedBy(account.getCreatedBy());
+                    resAccountDTO.setUpdatedBy(account.getUpdatedBy());
+
+                    if (account.getRole() != null) {
+                        ResAccountDTO.Role role = new ResAccountDTO.Role();
+                        role.setId(account.getRole().getId());
+                        role.setName(account.getRole().getName());
+                        resAccountDTO.setRole(role);
+                    }
+
+                    CompanyDTO companyDTO = null;
+                    if (account.getCompanyId() != 0) {
+                        companyDTO = this.companyService.getCompanyById(account.getCompanyId()).getData();
+                        ResAccountDTO.Company company = new ResAccountDTO.Company();
+                        company.setId(companyDTO.getId());
+                        company.setName(companyDTO.getName());
+                        resAccountDTO.setCompany(company);
+                    }
+
+                    return resAccountDTO;
+                }).collect(Collectors.toList());
+
+        ResultPaginationDTO resultPaginationDTO = new ResultPaginationDTO();
+        ResultPaginationDTO.Meta meta = new ResultPaginationDTO.Meta();
+
+        meta.setPageNumber(accountPage.getNumber() + 1);
+        meta.setPageSize(accountPage.getSize());
+        meta.setTotalPages(accountPage.getTotalPages());
+        meta.setTotalElements(accountPage.getTotalElements());
+
+        resultPaginationDTO.setMeta(meta);
+        resultPaginationDTO.setResult(accounts);
+        return resultPaginationDTO;
     }
 }

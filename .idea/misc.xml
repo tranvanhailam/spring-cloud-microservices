@@ -12,7 +12,16 @@
         <option value="$PROJECT_DIR$/gatewayservice/pom.xml" />
         <option value="$PROJECT_DIR$/monitoradmin/pom.xml" />
         <option value="$PROJECT_DIR$/authservice/pom.xml" />
+        <option value="$PROJECT_DIR$/roleservice/pom.xml" />
+        <option value="$PROJECT_DIR$/companyservice/pom.xml" />
+        <option value="$PROJECT_DIR$/skillservice/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/monitoradmin/pom.xml" />
+        <option value="$PROJECT_DIR$/statisticservice/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_24" project-jdk-name="17" project-jdk-type="JavaSDK">

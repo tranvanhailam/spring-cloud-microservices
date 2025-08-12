@@ -26,15 +26,16 @@ public class AccountService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Account> accountOptional = this.accountRepository.findByUsername(username);
+        Optional<Account> accountOptional = this.accountRepository.findByEmail(username);
         if (!accountOptional.isPresent()) {
-            throw new UsernameNotFoundException("Username: " + username + " not found");
+            throw new UsernameNotFoundException("Account with email " + username + " not found");
         }
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         Account account = accountOptional.get();
-        account.getRoles().forEach(role -> {
-            authorities.add(new SimpleGrantedAuthority(role));
-        });
-        return new User(account.getUsername(), account.getPassword(), authorities);
+        authorities.add(new SimpleGrantedAuthority(account.getRole().getName()));
+//        account.getRole().forEach(role -> {
+//            authorities.add(new SimpleGrantedAuthority(role));
+//        });
+        return new User(account.getEmail(), account.getPassword(), authorities);
     }
 }

@@ -18,6 +18,10 @@ public class RouteConfig {
 //                                        .circuitBreaker(c -> c.setName("CircuitBreaker")
 //                                                .getFallbackUri()))
                                 .uri("lb://account-service"))
+                .route("role-service-router",
+                        r -> r.path("/role/**")
+                                .filters(f -> f.stripPrefix(1))
+                                .uri("lb://role-service"))
                 .route("statistic-service-router",
                         r -> r.path("/report/**")
                                 .filters(f -> f.stripPrefix(1))
