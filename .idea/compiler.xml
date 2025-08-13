@@ -19,6 +19,7 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
         </processorPath>
         <module name="skillservice" />
+        <module name="jobservice" />
         <module name="companyservice" />
         <module name="authservice" />
         <module name="accountservice" />
@@ -38,6 +39,7 @@
       <module name="configservice" options="-parameters" />
       <module name="discoveryservice" options="-parameters" />
       <module name="gatewayservice" options="-parameters" />
+      <module name="jobservice" options="-parameters" />
       <module name="monitoradmin" options="-parameters" />
       <module name="notificationservice" options="-parameters" />
       <module name="skillservice" options="-parameters" />

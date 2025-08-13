@@ -1,10 +1,7 @@
 package vnpt_it.vn.accountservice.controller;
 
 import com.turkraft.springfilter.boot.Filter;
-import feign.FeignException;
 import jakarta.validation.Valid;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
@@ -14,9 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import vnpt_it.vn.accountservice.company.CompanyDTO;
 import vnpt_it.vn.accountservice.company.CompanyService;
 import vnpt_it.vn.accountservice.domain.Account;
-import vnpt_it.vn.accountservice.domain.AccountDTO;
-import vnpt_it.vn.accountservice.domain.Role;
-import vnpt_it.vn.accountservice.domain.mapper.AccountMapper;
 import vnpt_it.vn.accountservice.domain.res.ResAccountDTO;
 import vnpt_it.vn.accountservice.domain.res.RestResponse;
 import vnpt_it.vn.accountservice.domain.res.ResultPaginationDTO;
@@ -24,9 +18,6 @@ import vnpt_it.vn.accountservice.exception.ExistsException;
 import vnpt_it.vn.accountservice.exception.NotFoundException;
 import vnpt_it.vn.accountservice.service.AccountService;
 import vnpt_it.vn.accountservice.util.annotation.ApiMessage;
-
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class AccountController {
@@ -76,7 +67,7 @@ public class AccountController {
     @GetMapping("/accounts")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER','SCOPE_internal')")
     @ApiMessage("Get all accounts")
-    public ResponseEntity<ResultPaginationDTO> getAllAccounts(Pageable pageable, @Filter Specification<Account> specification) throws NotFoundException {
+    public ResponseEntity<ResultPaginationDTO> getAllAccounts(Pageable pageable, @Filter Specification<Account> specification) {
         ResultPaginationDTO resultPaginationDTO = this.accountService.handleGetAllAccounts(specification, pageable);
         return ResponseEntity.status(HttpStatus.OK).body(resultPaginationDTO);
     }

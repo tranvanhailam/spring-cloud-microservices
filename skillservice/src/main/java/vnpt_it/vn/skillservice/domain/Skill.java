@@ -1,36 +1,31 @@
-package vnpt_it.vn.accountservice.domain;
+package vnpt_it.vn.skillservice.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.*;
-import vnpt_it.vn.accountservice.util.constant.GenderEnum;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.Instant;
+import java.util.List;
 
 @Entity
-@Table(name = "accounts")
+@Table(name = "skills")
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class    Account {
+public class Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
-    @Column(name = "name")
+    @Column(name = "name",unique = true, nullable = false)
     private String name;
-    @Column(name = "email", unique = true)
-    private String email;
-    @Column(name = "password")
-    private String password;
-    @Column(name = "address")
-    private String address;
-    @Column(name = "age")
-    private int age;
-    @Enumerated(EnumType.STRING)
-    private GenderEnum gender;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss a", timezone = "GMT+7")
     @Column(name = "created_at")
     private Instant createdAt;
@@ -42,22 +37,24 @@ public class    Account {
     @Column(name = "updated_by")
     private String updatedBy;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Role role;
+//    @ManyToMany(mappedBy = "skills", fetch = FetchType.LAZY)
+//    @JsonIgnore
+//    private List<Job> jobs;
+//
+//    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "skills")
+//    @JsonIgnore
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+//    private List<Subscriber> subscribers;
 
-    @Column(name = "company_id")
-    private long companyId;
 
     @PrePersist
     public void handleBeforeCreate() {
-//        this.createdBy = SecurityUtil.getCurrentUserLogin().isPresent() ? SecurityUtil.getCurrentUserLogin().get() : "";
         this.createdAt = Instant.now();
     }
 
     @PreUpdate
     public void handleBeforeUpdate() {
-//        this.updatedBy = SecurityUtil.getCurrentUserLogin().isPresent() ? SecurityUtil.getCurrentUserLogin().get() : "";
         this.updatedAt = Instant.now();
     }
+
 }
