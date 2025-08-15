@@ -5,9 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import vnpt_it.vn.accountservice.domain.res.RestResponse;
-import vnpt_it.vn.accountservice.exception.ExistsException;
-import vnpt_it.vn.accountservice.exception.NotFoundException;
+import vnpt_it.vn.jobservice.domain.res.RestResponse;
+import vnpt_it.vn.jobservice.exception.ExistsException;
+import vnpt_it.vn.jobservice.exception.NotFoundException;
 
 @ControllerAdvice
 public class GlobalException {

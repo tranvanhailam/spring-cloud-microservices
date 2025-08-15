@@ -11,6 +11,7 @@ import lombok.Setter;
 import vnpt_it.vn.jobservice.util.constant.LevelEnum;
 
 import java.time.Instant;
+import java.util.List;
 
 @Getter
 @Setter
@@ -34,12 +35,22 @@ public class ResJobDTO {
     private String createdBy;
     private String updatedBy;
     private Company company;
+    private List<Skill> skills;
 
     @Getter
     @Setter
     @AllArgsConstructor
     @NoArgsConstructor
     public static class Company {
+        private long id;
+        private String name;
+    }
+
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class Skill {
         private long id;
         private String name;
     }

@@ -150,9 +150,25 @@ public class ServerSecurityConfig {
                 .build();
 
 
-
         RegisteredClient registeredClientAccountService = RegisteredClient.withId("account-service")
                 .clientId("account-service") // client_id
+                .clientSecret(this.passwordEncoder().encode("26102004")) // client_secret (được mã hoá)
+                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC) // phương thức xác thực client
+                .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS) // hỗ trợ grant_type: authorization_code
+//                .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN) // hỗ trợ refresh_token
+                .redirectUri("https://oauthdebugger.com/debug") // URI redirect sau khi xác thực thành công
+                .scope("read") // phạm vi truy cập
+                .scope("write")
+                .scope("internal")
+                .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build()) // bắt buộc người dùng xác nhận quyền
+                .tokenSettings(TokenSettings.builder()
+                        .accessTokenTimeToLive(Duration.ofMinutes(10)) // thời gian sống của access token
+                        .refreshTokenTimeToLive(Duration.ofMinutes(3600)) // thời gian sống của refresh token
+                        .build())
+                .build();
+
+        RegisteredClient registeredClientJobService = RegisteredClient.withId("job-service")
+                .clientId("job-service") // client_id
                 .clientSecret(this.passwordEncoder().encode("26102004")) // client_secret (được mã hoá)
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC) // phương thức xác thực client
                 .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS) // hỗ trợ grant_type: authorization_code
@@ -188,7 +204,8 @@ public class ServerSecurityConfig {
 //                .build();
 
         return new InMemoryRegisteredClientRepository(registeredClient,
-                registeredClientAccountService);
+                registeredClientAccountService,
+                registeredClientJobService);
     }
 
     @Bean

@@ -1,13 +1,12 @@
 package vnpt_it.vn.jobservice.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import vnpt_it.vn.jobservice.skill.SkillDTO;
 import vnpt_it.vn.jobservice.util.constant.LevelEnum;
 
 import java.time.Instant;
@@ -35,11 +34,11 @@ public class Job {
     @Enumerated(EnumType.STRING)
     @Column(name = "level")
     private LevelEnum level;
-    @Column(name = "description",columnDefinition = "MEDIUMTEXT")
+    @Column(name = "description", columnDefinition = "MEDIUMTEXT")
     private String description;
-    @Column(name = "startDate")
+    @Column(name = "start_date")
     private Instant startDate;
-    @Column(name = "endDate")
+    @Column(name = "end_date")
     private Instant endDate;
     @Column(name = "active")
     private boolean active;
@@ -57,10 +56,10 @@ public class Job {
     @Column(name = "company_id")
     private long companyId;
 
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JsonIgnoreProperties(value = {"jobs"})
-//    @JoinTable(name = "job_skill", joinColumns = @JoinColumn(name = "job_id"), inverseJoinColumns = @JoinColumn(name = "skill_id"))
-//    private List<Skill> skills;
+    @Transient
+    private List<SkillDTO> skills;
+
+
 
 
     @PrePersist

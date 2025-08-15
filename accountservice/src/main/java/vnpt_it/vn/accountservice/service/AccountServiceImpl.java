@@ -91,7 +91,7 @@ public class AccountServiceImpl implements AccountService {
         if (account.getCompanyId() != 0) {
             companyDTO = this.companyService.getCompanyById(account.getCompanyId()).getData();
             accountToUpdate.setCompanyId(account.getCompanyId());
-        }
+        }else  accountToUpdate.setCompanyId(0);
         return this.accountMapper.mapAccountToResAccountDTO(this.accountRepository.save(accountToUpdate), companyDTO);
     }
 
@@ -115,7 +115,7 @@ public class AccountServiceImpl implements AccountService {
         if (account.getCompanyId() != 0) {
             companyDTO = this.companyService.getCompanyById(account.getCompanyId()).getData();
         }
-        return this.accountMapper.mapAccountToResAccountDTO(this.accountRepository.save(account), companyDTO);
+        return this.accountMapper.mapAccountToResAccountDTO(account, companyDTO);
     }
 
     @Override
@@ -125,6 +125,7 @@ public class AccountServiceImpl implements AccountService {
         List<ResAccountDTO> accounts = accountPage.getContent().stream()
                 .map(account -> {
                     ResAccountDTO resAccountDTO = new ResAccountDTO();
+                    resAccountDTO.setId(account.getId());
                     resAccountDTO.setName(account.getName());
                     resAccountDTO.setEmail(account.getEmail());
                     resAccountDTO.setAddress(account.getAddress());

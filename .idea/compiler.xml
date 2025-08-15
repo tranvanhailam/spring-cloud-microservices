@@ -19,9 +19,10 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
         </processorPath>
         <module name="skillservice" />
+        <module name="resumeservice" />
         <module name="jobservice" />
-        <module name="companyservice" />
         <module name="authservice" />
+        <module name="companyservice" />
         <module name="accountservice" />
         <module name="notificationservice" />
       </profile>
@@ -42,6 +43,7 @@
       <module name="jobservice" options="-parameters" />
       <module name="monitoradmin" options="-parameters" />
       <module name="notificationservice" options="-parameters" />
+      <module name="resumeservice" options="-parameters" />
       <module name="skillservice" options="-parameters" />
       <module name="statisticservice" options="-parameters" />
     </option>
