@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import vnpt_it.vn.jobservice.domain.Job;
 import vnpt_it.vn.jobservice.domain.res.ResJobDTO;
@@ -18,17 +19,18 @@ import vnpt_it.vn.jobservice.service.JobService;
 import vnpt_it.vn.jobservice.service.JobSkillService;
 import vnpt_it.vn.jobservice.util.annotation.ApiMessage;
 
+import java.util.List;
+
 @RestController
 public class JobController {
     private final JobService jobService;
-    private final JobSkillService jobSkillService;
 
-    public JobController(JobService jobService, JobSkillService jobSkillService) {
+    public JobController(JobService jobService) {
         this.jobService = jobService;
-        this.jobSkillService = jobSkillService;
     }
 
     @PostMapping("/jobs")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SCOPE_internal')")
     @ApiMessage("Create job")
     public ResponseEntity<ResJobDTO> createJob(@Valid @RequestBody Job job) {
         ResJobDTO resJobDTO = this.jobService.handleCreateJob(job);
@@ -36,15 +38,15 @@ public class JobController {
     }
 
     @PutMapping("/jobs")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SCOPE_internal')")
     @ApiMessage("Update job")
     public ResponseEntity<ResJobDTO> updateJob(@Valid @RequestBody Job job) throws NotFoundException {
         ResJobDTO resJobDTO = this.jobService.handleUpdateJob(job);
-//        ResJobDTO resJobDTO = new ResJobDTO();
-//        this.jobSkillService.handleDeleteJobSkillByJobId(9);
         return ResponseEntity.status(HttpStatus.OK).body(resJobDTO);
     }
 
     @DeleteMapping("/jobs/{id}")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SCOPE_internal')")
     @ApiMessage("Delete job")
     public ResponseEntity<?> deleteJob(@PathVariable long id) throws NotFoundException {
         this.jobService.handleDeleteJob(id);
@@ -54,7 +56,15 @@ public class JobController {
         return ResponseEntity.status(HttpStatus.OK).body(restResponse);
     }
 
+    @GetMapping("/jobs/skill/{id}")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER','SCOPE_internal')")
+    @ApiMessage("Get job by id")
+    public ResponseEntity<List<ResJobDTO>> getJobsBySkillId(@PathVariable long id) throws NotFoundException {
+        List<ResJobDTO> resJobDTOs = this.jobService.handleGetJobsBySkillId(id);
+        return ResponseEntity.status(HttpStatus.OK).body(resJobDTOs);
+    }
     @GetMapping("/jobs/{id}")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER','SCOPE_internal')")
     @ApiMessage("Get job by id")
     public ResponseEntity<ResJobDTO> getJobById(@PathVariable long id) throws NotFoundException {
         ResJobDTO resJobDTO = this.jobService.handleGetJobById(id);
@@ -62,6 +72,7 @@ public class JobController {
     }
 
     @GetMapping("/jobs")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER','SCOPE_internal')")
     @ApiMessage("Get all jobs")
     public ResponseEntity<ResultPaginationDTO> getAllJobs(Pageable pageable, @Filter Specification<Job> specification) {
         ResultPaginationDTO resultPaginationDTO = this.jobService.handleGetAllJobs(specification, pageable);

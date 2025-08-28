@@ -6,7 +6,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import vnpt_it.vn.notificationservice.model.MessageDTO;
+import vnpt_it.vn.notificationservice.domain.MessageDTO;
 import vnpt_it.vn.notificationservice.service.NotificationService;
 
 @RestController
@@ -18,8 +18,8 @@ public class NotificationController {
         this.notificationService = notificationService;
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER','SCOPE_notification')")
     @PostMapping("/send-notification")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER','SCOPE_notification')")
     public void sendNotification(@RequestBody MessageDTO messageDTO) {
         logger.info(">>>>>>>>>> NotificationService NotificationController: sendNotification");
         this.notificationService.sendEmail(messageDTO);

@@ -11,7 +11,7 @@ import java.util.List;
 
 @Component
 public class JobMapper {
-    public ResJobDTO mapJobToResJobDTO(Job job, CompanyDTO companyDTO, List<SkillDTO> skillDTOS) {
+    public ResJobDTO mapJobToResJobDTO(Job job, CompanyDTO companyDTO, List<SkillDTO> skillDTOs) {
         ResJobDTO resJobDTO = new ResJobDTO();
         resJobDTO.setId(job.getId());
         resJobDTO.setName(job.getName());
@@ -35,9 +35,9 @@ public class JobMapper {
             resJobDTO.setCompany(company);
         }
 
-        if (!skillDTOS.isEmpty()) {
+        if (!skillDTOs.isEmpty()) {
             List<ResJobDTO.Skill> skills = new ArrayList<>();
-            skillDTOS.forEach(skillDTO -> {
+            skillDTOs.forEach(skillDTO -> {
                 ResJobDTO.Skill skill = new ResJobDTO.Skill();
                 skill.setId(skillDTO.getId());
                 skill.setName(skillDTO.getName());

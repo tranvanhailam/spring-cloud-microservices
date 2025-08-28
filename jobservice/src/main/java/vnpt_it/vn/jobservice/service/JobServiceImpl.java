@@ -57,11 +57,11 @@ public class JobServiceImpl implements JobService {
         if (job.getSkills() != null) {
             job.getSkills().forEach(skill -> {
                 SkillDTO skillDTO = this.skillService.getSkillById(skill.getId()).getData();
+                skillDTOs.add(skillDTO);
                 JobSkill jobSkill = new JobSkill();
                 jobSkill.setJobId(jobCreated.getId());
                 jobSkill.setSkillId(skill.getId());
                 this.jobSkillService.handleCreateJobSkill(jobSkill);
-                skillDTOs.add(skillDTO);
             });
         }
         return this.jobMapper.mapJobToResJobDTO(jobCreated, companyDTO, skillDTOs);
@@ -89,10 +89,8 @@ public class JobServiceImpl implements JobService {
             companyDTO = this.companyService.getCompanyById(job.getCompanyId()).getData();
             jobToUpdate.setCompanyId(job.getCompanyId());
         } else jobToUpdate.setCompanyId(0);
-
         //Update job
         Job jobUpdated = this.jobRepository.save(jobToUpdate);
-        long id = jobUpdated.getId();
         //Update JobSkill
         List<SkillDTO> skillDTOs = new ArrayList<>();
         //Delete old JobSkill
@@ -101,11 +99,11 @@ public class JobServiceImpl implements JobService {
             //Create new JobSkill
             job.getSkills().forEach(skill -> {
                 SkillDTO skillDTO = this.skillService.getSkillById(skill.getId()).getData();
+                skillDTOs.add(skillDTO);
                 JobSkill jobSkill = new JobSkill();
                 jobSkill.setJobId(jobUpdated.getId());
                 jobSkill.setSkillId(skill.getId());
                 this.jobSkillService.handleCreateJobSkill(jobSkill);
-                skillDTOs.add(skillDTO);
             });
 
         } //else this.jobSkillService.handleDeleteJobSkillByJobId(jobUpdated.getId());
@@ -147,10 +145,25 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
+        public List<ResJobDTO> handleGetJobsBySkillId(long id) {
+        List<JobSkill> jobSkills = this.jobSkillService.handleGetBySkillId(id);
+        List<ResJobDTO> jobDTOs = new ArrayList<>();
+        jobSkills.forEach(jobSkill -> {
+            try {
+                ResJobDTO  resJobDTO = handleGetJobById(jobSkill.getJobId());
+                jobDTOs.add(resJobDTO);
+            } catch (NotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        return jobDTOs;
+    }
+
+    @Override
     public ResultPaginationDTO handleGetAllJobs(Specification<Job> specification, Pageable pageable) {
         Page<Job> jobPage = this.jobRepository.findAll(specification, pageable);
 
-        List<ResJobDTO> jobs = jobPage.getContent().stream()
+        List<ResJobDTO> resJobDTOs = jobPage.getContent().stream()
                 .map(job -> {
                     ResJobDTO resJobDTO = new ResJobDTO();
                     resJobDTO.setId(job.getId());
@@ -199,7 +212,7 @@ public class JobServiceImpl implements JobService {
         meta.setTotalElements(jobPage.getTotalElements());
 
         resultPaginationDTO.setMeta(meta);
-        resultPaginationDTO.setResult(jobs);
+        resultPaginationDTO.setResult(resJobDTOs);
         return resultPaginationDTO;
     }
 }

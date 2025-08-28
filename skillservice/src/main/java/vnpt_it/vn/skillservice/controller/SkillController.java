@@ -26,7 +26,7 @@ public class SkillController {
     }
 
     @PostMapping("/skills")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER','SCOPE_internal')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SCOPE_internal')")
     @ApiMessage("Create skill")
     public ResponseEntity<Skill> createSkill(@Valid @RequestBody Skill skill) throws ExistsException {
         Skill skillCreated = this.skillService.handlCreateSkill(skill);
@@ -34,7 +34,7 @@ public class SkillController {
     }
 
     @PutMapping("/skills")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER','SCOPE_internal')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SCOPE_internal')")
     @ApiMessage("Update skill")
     public ResponseEntity<Skill> updateSkill(@Valid @RequestBody Skill skill) throws ExistsException, NotFoundException {
         Skill skillUpdated = this.skillService.handleUpdateSkill(skill);
@@ -42,7 +42,7 @@ public class SkillController {
     }
 
     @DeleteMapping("/skills/{id}")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER','SCOPE_internal')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SCOPE_internal')")
     @ApiMessage("Delete skill")
     public ResponseEntity<?> deleteSkill(@PathVariable("id") long id) throws NotFoundException {
         this.skillService.handleDeleteSkill(id);
@@ -53,7 +53,7 @@ public class SkillController {
     }
 
     @GetMapping("/skills/{id}")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SCOPE_internal')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER','SCOPE_internal')")
     @ApiMessage("Get skill by id")
     public ResponseEntity<Skill> getSkillById(@PathVariable("id") long id) throws NotFoundException {
         Skill skill = this.skillService.handleGetSkillById(id);
@@ -61,7 +61,7 @@ public class SkillController {
     }
 
     @GetMapping("/skills")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SCOPE_internal')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER','SCOPE_internal')")
     @ApiMessage("Get all skills")
     public ResponseEntity<ResultPaginationDTO> getAllSkills(Pageable pageable, @Filter Specification<Skill> specification) {
         ResultPaginationDTO resultPaginationDTO = this.skillService.handleGetAllSkills(specification, pageable);

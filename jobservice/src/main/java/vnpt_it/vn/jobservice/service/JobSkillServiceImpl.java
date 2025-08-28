@@ -28,8 +28,6 @@ public class JobSkillServiceImpl implements JobSkillService {
         return this.jobSkillRepository.save(jobSkill);
     }
 
-
-
     @Override
     public void handleDeleteJobSkillBySkillId(long skillId) {
         this.jobSkillRepository.deleteBySkillId(skillId);

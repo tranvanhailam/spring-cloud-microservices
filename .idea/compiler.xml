@@ -11,7 +11,7 @@
         <module name="configservice" />
         <module name="gatewayservice" />
       </profile>
-      <profile name="Annotation profile for skillservice" enabled="true">
+      <profile name="Annotation profile for subscriberservice" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -22,6 +22,7 @@
         <module name="resumeservice" />
         <module name="jobservice" />
         <module name="authservice" />
+        <module name="subscriberservice" />
         <module name="companyservice" />
         <module name="accountservice" />
         <module name="notificationservice" />
@@ -46,6 +47,7 @@
       <module name="resumeservice" options="-parameters" />
       <module name="skillservice" options="-parameters" />
       <module name="statisticservice" options="-parameters" />
+      <module name="subscriberservice" options="-parameters" />
     </option>
   </component>
 </project>

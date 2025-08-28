@@ -2,6 +2,7 @@ package vnpt_it.vn.notificationservice.service;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import org.apache.kafka.common.protocol.types.Field;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -9,7 +10,8 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring6.SpringTemplateEngine;
-import vnpt_it.vn.notificationservice.model.MessageDTO;
+import vnpt_it.vn.notificationservice.domain.MessageDTO;
+import vnpt_it.vn.notificationservice.domain.MessageJobIntroductionDTO;
 
 import java.nio.charset.StandardCharsets;
 
@@ -28,7 +30,6 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public void sendEmail(MessageDTO messageDTO) {
-        logger.info(">>>>>>>>>> NotificationService NotificationServiceImpl: sendEmail");
 
         try {
             logger.info("Start ... sending email");
@@ -50,6 +51,23 @@ public class NotificationServiceImpl implements NotificationService {
         } catch (MessagingException e) {
             logger.error(e.getMessage());
         }
+
+    }
+
+    @Override
+    public void sendEmailJobIntroduction(MessageJobIntroductionDTO messageJobIntroductionDTO) throws MessagingException {
+        Context context = new Context();
+        context.setVariable("name", messageJobIntroductionDTO.getToName());
+        context.setVariable("jobs", messageJobIntroductionDTO.getJobs());
+        String content=this.templateEngine.process("job-introduction", context);
+
+        MimeMessage mimeMessage = this.javaMailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper= new MimeMessageHelper(mimeMessage, false, StandardCharsets.UTF_8.name());
+        mimeMessageHelper.setTo(messageJobIntroductionDTO.getToEmail());
+        mimeMessageHelper.setSubject(messageJobIntroductionDTO.getSubject());
+        mimeMessageHelper.setText(content, true);
+
+        this.javaMailSender.send(mimeMessage);
 
     }
 }

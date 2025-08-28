@@ -7,6 +7,8 @@ import vnpt_it.vn.jobservice.domain.res.ResJobDTO;
 import vnpt_it.vn.jobservice.domain.res.ResultPaginationDTO;
 import vnpt_it.vn.jobservice.exception.NotFoundException;
 
+import java.util.List;
+
 public interface JobService {
     ResJobDTO handleCreateJob(Job job);
 
@@ -15,6 +17,7 @@ public interface JobService {
     void handleDeleteJob(long id) throws NotFoundException;
 
     ResJobDTO handleGetJobById(long id) throws NotFoundException;
+    List<ResJobDTO> handleGetJobsBySkillId(long id) throws NotFoundException;
 
     ResultPaginationDTO handleGetAllJobs(Specification<Job> specification, Pageable pageable);
 }

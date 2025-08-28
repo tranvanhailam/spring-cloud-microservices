@@ -10,8 +10,8 @@ import org.springframework.http.server.ServletServerHttpResponse;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
-import vnpt_it.vn.jobservice.domain.res.RestResponse;
-import vnpt_it.vn.jobservice.util.annotation.ApiMessage;
+import vnpt_it.vn.resumeservice.domain.res.RestResponse;
+import vnpt_it.vn.resumeservice.util.annotation.ApiMessage;
 
 @RestControllerAdvice
 public class FormatRestResponse implements ResponseBodyAdvice<Object> {

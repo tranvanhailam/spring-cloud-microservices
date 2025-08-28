@@ -9,8 +9,6 @@ import java.util.List;
 public interface JobSkillService {
     JobSkill handleCreateJobSkill(JobSkill jobSkill) ;
 
-
-
     void handleDeleteJobSkillBySkillId(long skillId);
 
     void handleDeleteJobSkillByJobId(long jobId);

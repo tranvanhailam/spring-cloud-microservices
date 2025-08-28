@@ -17,6 +17,7 @@
         <option value="$PROJECT_DIR$/skillservice/pom.xml" />
         <option value="$PROJECT_DIR$/jobservice/pom.xml" />
         <option value="$PROJECT_DIR$/resumeservice/pom.xml" />
+        <option value="$PROJECT_DIR$/subscriberservice/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
