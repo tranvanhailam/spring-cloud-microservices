@@ -15,10 +15,13 @@ import vnpt_it.vn.subscriberservice.domain.res.ResultPaginationDTO;
 import vnpt_it.vn.subscriberservice.exception.NotFoundException;
 import vnpt_it.vn.subscriberservice.service.SubscriberService;
 import vnpt_it.vn.subscriberservice.util.annotation.ApiMessage;
+import vnpt_it.vn.subscriberservice.util.annotation.ValidationCreateSubscriber;
+import vnpt_it.vn.subscriberservice.util.annotation.ValidationUpdateSubscriber;
 
 @RestController
 public class SubscriberController {
     private final SubscriberService subscriberService;
+
     public SubscriberController(SubscriberService subscriberService) {
         this.subscriberService = subscriberService;
     }
@@ -26,6 +29,7 @@ public class SubscriberController {
     @PostMapping("/subscribers")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SCOPE_internal')")
     @ApiMessage("Create subscriber")
+    @ValidationCreateSubscriber
     public ResponseEntity<ResSubscriberDTO> createSubscriber(@Valid @RequestBody Subscriber subscriber) {
         ResSubscriberDTO resSubscriberDTO = this.subscriberService.handleCreateSubscriber(subscriber);
         return ResponseEntity.status(HttpStatus.CREATED).body(resSubscriberDTO);
@@ -34,6 +38,7 @@ public class SubscriberController {
     @PutMapping("/subscribers")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SCOPE_internal')")
     @ApiMessage("Update subscriber")
+    @ValidationUpdateSubscriber
     public ResponseEntity<ResSubscriberDTO> updateSubscriber(@Valid @RequestBody Subscriber subscriber) throws NotFoundException {
         ResSubscriberDTO resSubscriberDTO = this.subscriberService.handleUpdateSubscriber(subscriber);
         return ResponseEntity.status(HttpStatus.OK).body(resSubscriberDTO);
@@ -61,8 +66,8 @@ public class SubscriberController {
     @GetMapping("/subscribers")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER','SCOPE_internal')")
     @ApiMessage("Get all subscribers")
-    public ResponseEntity<ResultPaginationDTO> getAllSubscribers(Pageable pageable,@Filter Specification<Subscriber> specification) {
-        ResultPaginationDTO resultPaginationDTO= this.subscriberService.handleGetAllSubscribers(specification, pageable);
+    public ResponseEntity<ResultPaginationDTO> getAllSubscribers(Pageable pageable, @Filter Specification<Subscriber> specification) {
+        ResultPaginationDTO resultPaginationDTO = this.subscriberService.handleGetAllSubscribers(specification, pageable);
         return ResponseEntity.status(HttpStatus.OK).body(resultPaginationDTO);
     }
 }

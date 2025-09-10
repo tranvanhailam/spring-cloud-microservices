@@ -9,7 +9,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="discoveryservice" />
         <module name="configservice" />
-        <module name="gatewayservice" />
       </profile>
       <profile name="Annotation profile for subscriberservice" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -26,6 +25,7 @@
         <module name="companyservice" />
         <module name="accountservice" />
         <module name="notificationservice" />
+        <module name="gatewayservice" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

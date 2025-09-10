@@ -15,28 +15,32 @@ import vnpt_it.vn.resumeservice.domain.res.ResultPaginationDTO;
 import vnpt_it.vn.resumeservice.exception.NotFoundException;
 import vnpt_it.vn.resumeservice.service.ResumeService;
 import vnpt_it.vn.resumeservice.util.annotation.ApiMessage;
+import vnpt_it.vn.resumeservice.util.annotation.ValidationCreateResume;
+import vnpt_it.vn.resumeservice.util.annotation.ValidationUpdateResume;
 
 @RestController
 public class ResumeController {
     private final ResumeService resumeService;
 
-    public  ResumeController(ResumeService resumeService) {
+    public ResumeController(ResumeService resumeService) {
         this.resumeService = resumeService;
     }
 
     @PostMapping("/resumes")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SCOPE_internal')")
     @ApiMessage("Create resume")
+    @ValidationCreateResume
     public ResponseEntity<ResResumeDTO> createResume(@Valid @RequestBody Resume resume) {
-        ResResumeDTO resResumeDTO= this.resumeService.handleCreateResume(resume);
+        ResResumeDTO resResumeDTO = this.resumeService.handleCreateResume(resume);
         return ResponseEntity.status(HttpStatus.CREATED).body(resResumeDTO);
     }
 
     @PutMapping("/resumes")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SCOPE_internal')")
     @ApiMessage("Update resume")
+    @ValidationUpdateResume
     public ResponseEntity<ResResumeDTO> updateResume(@Valid @RequestBody Resume resume) throws NotFoundException {
-        ResResumeDTO resResumeDTO= this.resumeService.handleUpdateResume(resume);
+        ResResumeDTO resResumeDTO = this.resumeService.handleUpdateResume(resume);
         return ResponseEntity.status(HttpStatus.OK).body(resResumeDTO);
     }
 
@@ -45,7 +49,7 @@ public class ResumeController {
     @ApiMessage("Delete resumes")
     public ResponseEntity<?> deleteResume(@PathVariable long id) throws NotFoundException {
         this.resumeService.handleDeleteResume(id);
-        RestResponse<String> restResponse= new RestResponse<>();
+        RestResponse<String> restResponse = new RestResponse<>();
         restResponse.setMessage("Delete resume successfully!");
         restResponse.setStatusCode(HttpStatus.OK.value());
         return ResponseEntity.status(HttpStatus.OK).body(restResponse);
@@ -55,15 +59,15 @@ public class ResumeController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER','SCOPE_internal')")
     @ApiMessage("Get resume by id")
     public ResponseEntity<ResResumeDTO> getResumeById(@PathVariable long id) throws NotFoundException {
-        ResResumeDTO resResumeDTO= this.resumeService.handleGetResumeById(id);
+        ResResumeDTO resResumeDTO = this.resumeService.handleGetResumeById(id);
         return ResponseEntity.status(HttpStatus.OK).body(resResumeDTO);
     }
 
     @GetMapping("/resumes")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER','SCOPE_internal')")
     @ApiMessage("Get all resumes")
-    public ResponseEntity<ResultPaginationDTO>  getAllResumes(Pageable pageable,@Filter Specification<Resume> specification) {
-        ResultPaginationDTO resultPaginationDTO= this.resumeService.handleGetAllResumes(specification, pageable);
+    public ResponseEntity<ResultPaginationDTO> getAllResumes(Pageable pageable, @Filter Specification<Resume> specification) {
+        ResultPaginationDTO resultPaginationDTO = this.resumeService.handleGetAllResumes(specification, pageable);
         return ResponseEntity.status(HttpStatus.OK).body(resultPaginationDTO);
     }
 

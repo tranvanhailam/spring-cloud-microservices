@@ -15,6 +15,8 @@ import vnpt_it.vn.companyservice.domain.res.ResultPaginationDTO;
 import vnpt_it.vn.companyservice.exception.NotFoundException;
 import vnpt_it.vn.companyservice.service.CompanyService;
 import vnpt_it.vn.companyservice.util.annotation.ApiMessage;
+import vnpt_it.vn.companyservice.util.annotation.ValidationCreateCompany;
+import vnpt_it.vn.companyservice.util.annotation.ValidationUpdateCompany;
 
 @RestController
 public class CompanyController {
@@ -34,6 +36,7 @@ public class CompanyController {
     @PostMapping("/companies")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SCOPE_internal')")
     @ApiMessage("Create company")
+    @ValidationCreateCompany
     public ResponseEntity<Company> createCompany(@Valid @RequestBody Company company) {
         Company companyCreated = this.companyService.handleCreateCompany(company);
         return ResponseEntity.status(HttpStatus.CREATED).body(companyCreated);
@@ -42,6 +45,7 @@ public class CompanyController {
     @PutMapping("/companies")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SCOPE_internal')")
     @ApiMessage("Update company")
+    @ValidationUpdateCompany
     public ResponseEntity<Company> updateCompany(@Valid @RequestBody Company company) throws NotFoundException {
         Company companyUpdated = this.companyService.handleUpdateCompany(company);
         return ResponseEntity.status(HttpStatus.OK).body(companyUpdated);

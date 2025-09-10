@@ -2,7 +2,6 @@ package vnpt_it.vn.skillservice.controller;
 
 import com.turkraft.springfilter.boot.Filter;
 import jakarta.validation.Valid;
-import org.hibernate.internal.build.AllowNonPortable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
@@ -16,6 +15,8 @@ import vnpt_it.vn.skillservice.exception.ExistsException;
 import vnpt_it.vn.skillservice.exception.NotFoundException;
 import vnpt_it.vn.skillservice.service.SkillService;
 import vnpt_it.vn.skillservice.util.annotation.ApiMessage;
+import vnpt_it.vn.skillservice.util.annotation.ValidationCreateSkill;
+import vnpt_it.vn.skillservice.util.annotation.ValidationUpdateSkill;
 
 @RestController
 public class SkillController {
@@ -28,6 +29,7 @@ public class SkillController {
     @PostMapping("/skills")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SCOPE_internal')")
     @ApiMessage("Create skill")
+    @ValidationCreateSkill
     public ResponseEntity<Skill> createSkill(@Valid @RequestBody Skill skill) throws ExistsException {
         Skill skillCreated = this.skillService.handlCreateSkill(skill);
         return ResponseEntity.status(HttpStatus.CREATED).body(skillCreated);
@@ -36,6 +38,7 @@ public class SkillController {
     @PutMapping("/skills")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SCOPE_internal')")
     @ApiMessage("Update skill")
+    @ValidationUpdateSkill
     public ResponseEntity<Skill> updateSkill(@Valid @RequestBody Skill skill) throws ExistsException, NotFoundException {
         Skill skillUpdated = this.skillService.handleUpdateSkill(skill);
         return ResponseEntity.status(HttpStatus.OK).body(skillUpdated);

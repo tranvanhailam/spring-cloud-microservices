@@ -18,6 +18,8 @@ import vnpt_it.vn.accountservice.exception.ExistsException;
 import vnpt_it.vn.accountservice.exception.NotFoundException;
 import vnpt_it.vn.accountservice.service.AccountService;
 import vnpt_it.vn.accountservice.util.annotation.ApiMessage;
+import vnpt_it.vn.accountservice.util.annotation.ValidationCreateAccount;
+import vnpt_it.vn.accountservice.util.annotation.ValidationUpdateAccount;
 
 @RestController
 public class AccountController {
@@ -32,6 +34,7 @@ public class AccountController {
     @PostMapping("/accounts")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SCOPE_internal')")
     @ApiMessage("Create account")
+    @ValidationCreateAccount
     public ResponseEntity<ResAccountDTO> createAccount(@Valid @RequestBody Account account) throws ExistsException, NotFoundException {
         ResAccountDTO resAccountDTO = this.accountService.handleCreateAccount(account);
         return ResponseEntity.status(HttpStatus.CREATED).body(resAccountDTO);
@@ -40,6 +43,7 @@ public class AccountController {
     @PutMapping("/accounts")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SCOPE_internal')")
     @ApiMessage("Update account")
+    @ValidationUpdateAccount
     public ResponseEntity<ResAccountDTO> updateAccount(@Valid @RequestBody Account account) throws NotFoundException, ExistsException {
         ResAccountDTO resAccountDTO = this.accountService.handleUpdateAccount(account);
         return ResponseEntity.status(HttpStatus.OK).body(resAccountDTO);

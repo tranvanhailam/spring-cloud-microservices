@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import vnpt_it.vn.jobservice.domain.res.RestResponse;
 import vnpt_it.vn.jobservice.exception.ExistsException;
 import vnpt_it.vn.jobservice.exception.NotFoundException;
+import vnpt_it.vn.jobservice.exception.ValidationException;
 
 @ControllerAdvice
 public class GlobalException {
@@ -42,6 +43,15 @@ public class GlobalException {
         restResponse.setStatusCode(HttpStatus.BAD_REQUEST.value());
         restResponse.setMessage(e.getMessage());
         restResponse.setError("Exists Exception");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(restResponse);
+    }
+
+    @ExceptionHandler(value = ValidationException.class)
+    public ResponseEntity<RestResponse<Object>> handleValidationException(ValidationException e) {
+        RestResponse<Object> restResponse = new RestResponse<>();
+        restResponse.setStatusCode(HttpStatus.BAD_REQUEST.value());
+        restResponse.setMessage(e.getMessage());
+        restResponse.setError("Validation Exception");
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(restResponse);
     }
 }

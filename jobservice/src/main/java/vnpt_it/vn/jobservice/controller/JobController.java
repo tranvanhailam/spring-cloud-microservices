@@ -2,7 +2,6 @@ package vnpt_it.vn.jobservice.controller;
 
 import com.turkraft.springfilter.boot.Filter;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
@@ -14,10 +13,10 @@ import vnpt_it.vn.jobservice.domain.res.ResJobDTO;
 import vnpt_it.vn.jobservice.domain.res.RestResponse;
 import vnpt_it.vn.jobservice.domain.res.ResultPaginationDTO;
 import vnpt_it.vn.jobservice.exception.NotFoundException;
-import vnpt_it.vn.jobservice.repository.JobSkillRepository;
 import vnpt_it.vn.jobservice.service.JobService;
-import vnpt_it.vn.jobservice.service.JobSkillService;
 import vnpt_it.vn.jobservice.util.annotation.ApiMessage;
+import vnpt_it.vn.jobservice.util.annotation.ValidationCreateJob;
+import vnpt_it.vn.jobservice.util.annotation.ValidationUpdateJob;
 
 import java.util.List;
 
@@ -32,6 +31,7 @@ public class JobController {
     @PostMapping("/jobs")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SCOPE_internal')")
     @ApiMessage("Create job")
+    @ValidationCreateJob
     public ResponseEntity<ResJobDTO> createJob(@Valid @RequestBody Job job) {
         ResJobDTO resJobDTO = this.jobService.handleCreateJob(job);
         return ResponseEntity.status(HttpStatus.CREATED).body(resJobDTO);
@@ -40,6 +40,7 @@ public class JobController {
     @PutMapping("/jobs")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SCOPE_internal')")
     @ApiMessage("Update job")
+    @ValidationUpdateJob
     public ResponseEntity<ResJobDTO> updateJob(@Valid @RequestBody Job job) throws NotFoundException {
         ResJobDTO resJobDTO = this.jobService.handleUpdateJob(job);
         return ResponseEntity.status(HttpStatus.OK).body(resJobDTO);
@@ -63,6 +64,7 @@ public class JobController {
         List<ResJobDTO> resJobDTOs = this.jobService.handleGetJobsBySkillId(id);
         return ResponseEntity.status(HttpStatus.OK).body(resJobDTOs);
     }
+
     @GetMapping("/jobs/{id}")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER','SCOPE_internal')")
     @ApiMessage("Get job by id")
