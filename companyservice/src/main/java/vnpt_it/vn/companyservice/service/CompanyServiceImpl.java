@@ -1,5 +1,8 @@
 package vnpt_it.vn.companyservice.service;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -24,12 +27,14 @@ public class CompanyServiceImpl implements CompanyService {
         this.authService = authService;
     }
 
+    @CachePut(value = "companies", key = "#company.id")
     @Override
     public Company handleCreateCompany(Company company) {
         company.setCreatedBy(this.authService.getUserInfo().getSub());
         return this.companyRepository.save(company);
     }
 
+    @CachePut(value = "companies", key = "#company.id")
     @Override
     public Company handleUpdateCompany(Company company) throws NotFoundException {
         Optional<Company> optionalCompany = this.companyRepository.findById(company.getId());
@@ -46,6 +51,7 @@ public class CompanyServiceImpl implements CompanyService {
         throw new NotFoundException("Company with id " + company.getId() + " not found");
     }
 
+    @CacheEvict(value = "companies", key = "#id")
     @Override
     public void handleDeleteCompany(long id) throws NotFoundException {
         Optional<Company> optionalCompany = this.companyRepository.findById(id);
@@ -55,6 +61,7 @@ public class CompanyServiceImpl implements CompanyService {
         this.companyRepository.delete(optionalCompany.get());
     }
 
+    @Cacheable(value = "companies", key = "#id")
     @Override
     public Company handleGetCompanyById(long id) throws NotFoundException {
         Optional<Company> optionalCompany = this.companyRepository.findById(id);

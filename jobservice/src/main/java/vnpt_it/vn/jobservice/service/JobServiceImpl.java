@@ -1,5 +1,8 @@
 package vnpt_it.vn.jobservice.service;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -43,6 +46,7 @@ public class JobServiceImpl implements JobService {
     }
 
 
+    @CachePut(value = "jobs", key = "#job.id")
     @Override
     public ResJobDTO handleCreateJob(Job job) {
         job.setCreatedBy(this.authService.getUserInfo().getSub());
@@ -67,6 +71,7 @@ public class JobServiceImpl implements JobService {
         return this.jobMapper.mapJobToResJobDTO(jobCreated, companyDTO, skillDTOs);
     }
 
+    @CachePut(value = "jobs", key = "#job.id")
     @Override
     public ResJobDTO handleUpdateJob(Job job) throws NotFoundException {
         Optional<Job> optionalJob = this.jobRepository.findById(job.getId());
@@ -110,6 +115,7 @@ public class JobServiceImpl implements JobService {
         return this.jobMapper.mapJobToResJobDTO(jobUpdated, companyDTO, skillDTOs);
     }
 
+    @CacheEvict(value = "jobs", key = "#id")
     @Override
     public void handleDeleteJob(long id) throws NotFoundException {
         Optional<Job> optionalJob = this.jobRepository.findById(id);
@@ -122,6 +128,7 @@ public class JobServiceImpl implements JobService {
         this.jobSkillService.handleDeleteJobSkillByJobId(id);
     }
 
+    @Cacheable(value = "jobs", key = "#id")
     @Override
     public ResJobDTO handleGetJobById(long id) throws NotFoundException {
         Optional<Job> optionalJob = this.jobRepository.findById(id);
@@ -145,12 +152,12 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-        public List<ResJobDTO> handleGetJobsBySkillId(long id) {
+    public List<ResJobDTO> handleGetJobsBySkillId(long id) {
         List<JobSkill> jobSkills = this.jobSkillService.handleGetBySkillId(id);
         List<ResJobDTO> jobDTOs = new ArrayList<>();
         jobSkills.forEach(jobSkill -> {
             try {
-                ResJobDTO  resJobDTO = handleGetJobById(jobSkill.getJobId());
+                ResJobDTO resJobDTO = handleGetJobById(jobSkill.getJobId());
                 jobDTOs.add(resJobDTO);
             } catch (NotFoundException e) {
                 throw new RuntimeException(e);

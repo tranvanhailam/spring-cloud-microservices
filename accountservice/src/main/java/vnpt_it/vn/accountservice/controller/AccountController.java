@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import vnpt_it.vn.accountservice.company.CompanyDTO;
+import vnpt_it.vn.accountservice.auth.AuthService;
 import vnpt_it.vn.accountservice.company.CompanyService;
 import vnpt_it.vn.accountservice.domain.Account;
 import vnpt_it.vn.accountservice.domain.res.ResAccountDTO;
@@ -25,11 +25,14 @@ import vnpt_it.vn.accountservice.util.annotation.ValidationUpdateAccount;
 public class AccountController {
     private final AccountService accountService;
     private final CompanyService companyService;
+    private final AuthService authService;
 
-    public AccountController(AccountService accountService, CompanyService companyService) {
+    public AccountController(AccountService accountService, CompanyService companyService, AuthService authService) {
         this.accountService = accountService;
         this.companyService = companyService;
+        this.authService = authService;
     }
+
 
     @PostMapping("/accounts")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','SCOPE_internal')")
@@ -60,6 +63,7 @@ public class AccountController {
         return ResponseEntity.status(HttpStatus.OK).body(restResponse);
     }
 
+
     @GetMapping("/accounts/{id}")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER','SCOPE_internal')")
     @ApiMessage("Get account by id")
@@ -76,9 +80,9 @@ public class AccountController {
         return ResponseEntity.status(HttpStatus.OK).body(resultPaginationDTO);
     }
 
-    @GetMapping("/companies/{id}")
-    public CompanyDTO getCompanyById(@PathVariable("id") long id) {
-        return this.companyService.getCompanyById(id).getData();
+    @GetMapping("/userinfo")
+    public String getCompanyById(@PathVariable("id") long id) {
+        return this.authService.getUserInfo().getSub();
     }
 
 }

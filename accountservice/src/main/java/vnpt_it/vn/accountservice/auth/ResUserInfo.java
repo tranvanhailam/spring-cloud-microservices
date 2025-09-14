@@ -15,3 +15,4 @@ public class ResUserInfo {
     private String email;
     private String preferred_username;
 }
+

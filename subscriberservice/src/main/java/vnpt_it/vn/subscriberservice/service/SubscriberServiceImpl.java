@@ -1,6 +1,9 @@
 package vnpt_it.vn.subscriberservice.service;
 
 import jakarta.transaction.Transactional;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -39,12 +42,13 @@ public class SubscriberServiceImpl implements SubscriberService {
     }
 
 
+    @CachePut(value = "subscribers", key = "#subscriber.id")
     @Override
     public ResSubscriberDTO handleCreateSubscriber(Subscriber subscriber) {
         subscriber.setCreatedBy(this.authService.getUserInfo().getSub());
         Subscriber subscriberCreated = this.subscriberRepository.save(subscriber);
         List<SkillDTO> skillDTOs = new ArrayList<>();
-        if (subscriber.getSkills() != null){
+        if (subscriber.getSkills() != null) {
             subscriber.getSkills().forEach(skill -> {
                 SkillDTO skillDTO = this.skillService.getSkillById(skill.getId()).getData();
                 skillDTOs.add(skillDTO);
@@ -54,14 +58,15 @@ public class SubscriberServiceImpl implements SubscriberService {
                 this.subscriberSkillService.handleCreateSubscriberSkill(subscriberSkill);
             });
         }
-        return this.subscriberMapper.mapSubscriberToSubscriberDTO(subscriberCreated,skillDTOs);
+        return this.subscriberMapper.mapSubscriberToSubscriberDTO(subscriberCreated, skillDTOs);
     }
 
+    @CachePut(value = "subscribers", key = "#subscriber.id")
     @Override
     public ResSubscriberDTO handleUpdateSubscriber(Subscriber subscriber) throws NotFoundException {
-        Optional<Subscriber> subscriberOptional= this.subscriberRepository.findById(subscriber.getId());
+        Optional<Subscriber> subscriberOptional = this.subscriberRepository.findById(subscriber.getId());
         if (!subscriberOptional.isPresent()) {
-            throw new NotFoundException("Subscriber with id "+subscriber.getId()+" not found");
+            throw new NotFoundException("Subscriber with id " + subscriber.getId() + " not found");
         }
         Subscriber subscriberToUpdate = subscriberOptional.get();
         subscriberToUpdate.setName(subscriber.getName());
@@ -73,7 +78,7 @@ public class SubscriberServiceImpl implements SubscriberService {
         List<SkillDTO> skillDTOs = new ArrayList<>();
         //Delete old SubscriberSkill
         this.subscriberSkillService.handleDeleteSubscriberSkillBySubscriberId(subscriberUpdated.getId());
-        if(subscriber.getSkills() != null){
+        if (subscriber.getSkills() != null) {
             //Create new SubscriberSkill
             subscriber.getSkills().forEach(skill -> {
                 SkillDTO skillDTO = this.skillService.getSkillById(skill.getId()).getData();
@@ -84,14 +89,15 @@ public class SubscriberServiceImpl implements SubscriberService {
                 this.subscriberSkillService.handleCreateSubscriberSkill(subscriberSkill);
             });
         }
-        return this.subscriberMapper.mapSubscriberToSubscriberDTO(subscriberUpdated,skillDTOs);
+        return this.subscriberMapper.mapSubscriberToSubscriberDTO(subscriberUpdated, skillDTOs);
     }
 
+    @CacheEvict(value = "subscribers", key = "#id")
     @Override
     public void handleDeleteSubscriber(long id) throws NotFoundException {
-        Optional<Subscriber> subscriberOptional= this.subscriberRepository.findById(id);
+        Optional<Subscriber> subscriberOptional = this.subscriberRepository.findById(id);
         if (!subscriberOptional.isPresent()) {
-            throw new NotFoundException("Subscriber with id "+id+" not found");
+            throw new NotFoundException("Subscriber with id " + id + " not found");
         }
         //Delete Subscribers
         this.subscriberRepository.deleteById(id);
@@ -99,30 +105,31 @@ public class SubscriberServiceImpl implements SubscriberService {
         this.subscriberSkillService.handleDeleteSubscriberSkillBySubscriberId(id);
     }
 
+    @Cacheable(value = "subscribers", key = "#id")
     @Override
     public ResSubscriberDTO handleGetSubscriberById(long id) throws NotFoundException {
-        Optional<Subscriber> subscriberOptional= this.subscriberRepository.findById(id);
+        Optional<Subscriber> subscriberOptional = this.subscriberRepository.findById(id);
         if (!subscriberOptional.isPresent()) {
-            throw new NotFoundException("Subscriber with id "+id+" not found");
+            throw new NotFoundException("Subscriber with id " + id + " not found");
         }
         Subscriber subscriber = subscriberOptional.get();
         //Get Skill list
         List<SkillDTO> skillDTOs = new ArrayList<>();
         List<SubscriberSkill> subscriberSkills = this.subscriberSkillService.handleGetBySubscriberId(subscriber.getId());
         subscriberSkills.forEach(subscriberSkill -> {
-            SkillDTO skillDTO= this.skillService.getSkillById(subscriberSkill.getSkillId()).getData();
+            SkillDTO skillDTO = this.skillService.getSkillById(subscriberSkill.getSkillId()).getData();
             skillDTOs.add(skillDTO);
         });
-        return this.subscriberMapper.mapSubscriberToSubscriberDTO(subscriber,skillDTOs);
+        return this.subscriberMapper.mapSubscriberToSubscriberDTO(subscriber, skillDTOs);
     }
 
     @Override
     public ResultPaginationDTO handleGetAllSubscribers(Specification<Subscriber> specification, Pageable pageable) {
-        Page<Subscriber> subscriberPage= this.subscriberRepository.findAll(specification,pageable);
+        Page<Subscriber> subscriberPage = this.subscriberRepository.findAll(specification, pageable);
 
-        List<ResSubscriberDTO> resSubscriberDTOs= subscriberPage.getContent().stream()
+        List<ResSubscriberDTO> resSubscriberDTOs = subscriberPage.getContent().stream()
                 .map(subscriber -> {
-                    ResSubscriberDTO resSubscriberDTO= new ResSubscriberDTO();
+                    ResSubscriberDTO resSubscriberDTO = new ResSubscriberDTO();
                     resSubscriberDTO.setId(subscriber.getId());
                     resSubscriberDTO.setName(subscriber.getName());
                     resSubscriberDTO.setEmail(subscriber.getEmail());
@@ -135,7 +142,7 @@ public class SubscriberServiceImpl implements SubscriberService {
                     List<ResSubscriberDTO.Skill> skills = new ArrayList<>();
                     subscriberSkills.forEach(subscriberSkill -> {
                         SkillDTO skillDTO = this.skillService.getSkillById(subscriberSkill.getSkillId()).getData();
-                        ResSubscriberDTO.Skill skill= new ResSubscriberDTO.Skill();
+                        ResSubscriberDTO.Skill skill = new ResSubscriberDTO.Skill();
                         skill.setId(subscriberSkill.getSkillId());
                         skill.setName(skillDTO.getName());
                         skills.add(skill);
@@ -144,8 +151,8 @@ public class SubscriberServiceImpl implements SubscriberService {
                     return resSubscriberDTO;
                 }).collect(Collectors.toList());
 
-        ResultPaginationDTO resultPaginationDTO= new ResultPaginationDTO();
-        ResultPaginationDTO.Meta meta= new ResultPaginationDTO.Meta();
+        ResultPaginationDTO resultPaginationDTO = new ResultPaginationDTO();
+        ResultPaginationDTO.Meta meta = new ResultPaginationDTO.Meta();
 
         meta.setPageNumber(subscriberPage.getNumber() + 1);
         meta.setPageSize(subscriberPage.getSize());

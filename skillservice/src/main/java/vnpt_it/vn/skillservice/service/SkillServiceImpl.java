@@ -1,7 +1,8 @@
 package vnpt_it.vn.skillservice.service;
 
-import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -27,6 +28,7 @@ public class SkillServiceImpl implements SkillService {
         this.authService = authService;
     }
 
+    @CachePut(value = "skills", key = "#skill.id")
     @Override
     public Skill handlCreateSkill(Skill skill) throws ExistsException {
         if (this.skillRepository.existsByName(skill.getName())) {
@@ -36,6 +38,7 @@ public class SkillServiceImpl implements SkillService {
         return this.skillRepository.save(skill);
     }
 
+    @CachePut(value = "skills", key = "#skill.id")
     @Override
     public Skill handleUpdateSkill(Skill skill) throws NotFoundException, ExistsException {
         Optional<Skill> optionalSkill = this.skillRepository.findById(skill.getId());
@@ -52,6 +55,7 @@ public class SkillServiceImpl implements SkillService {
         throw new NotFoundException("Skill with id " + skill.getId() + " not found");
     }
 
+    @CacheEvict(value = "skills", key = "#id")
     @Override
     public void handleDeleteSkill(long id) throws NotFoundException {
         Optional<Skill> optionalSkill = this.skillRepository.findById(id);
@@ -61,6 +65,7 @@ public class SkillServiceImpl implements SkillService {
         this.skillRepository.deleteById(id);
     }
 
+    @Cacheable(value = "skills", key = "#id")
     @Override
     public Skill handleGetSkillById(long id) throws NotFoundException {
         Optional<Skill> optionalSkill = this.skillRepository.findById(id);

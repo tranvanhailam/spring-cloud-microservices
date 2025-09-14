@@ -1,8 +1,8 @@
 package vnpt_it.vn.accountservice.service;
 
-import feign.FeignException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -20,7 +20,6 @@ import vnpt_it.vn.accountservice.domain.res.ResultPaginationDTO;
 import vnpt_it.vn.accountservice.exception.ExistsException;
 import vnpt_it.vn.accountservice.exception.NotFoundException;
 import vnpt_it.vn.accountservice.repository.AccountRepository;
-import vnpt_it.vn.accountservice.repository.RoleRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -46,7 +45,7 @@ public class AccountServiceImpl implements AccountService {
         this.accountMapper = accountMapper;
     }
 
-
+    @CachePut(value = "accounts", key = "#account.id")
     @Override
     public ResAccountDTO handleCreateAccount(Account account) throws ExistsException, NotFoundException {
         if (this.accountRepository.existsByEmail(account.getEmail())) {
@@ -66,6 +65,7 @@ public class AccountServiceImpl implements AccountService {
         return this.accountMapper.mapAccountToResAccountDTO(this.accountRepository.save(account), companyDTO);
     }
 
+    @CachePut(value = "accounts", key = "#account.id")
     @Override
     public ResAccountDTO handleUpdateAccount(Account account) throws NotFoundException, ExistsException {
         Optional<Account> optionalAccount = this.accountRepository.findById(account.getId());
@@ -91,10 +91,11 @@ public class AccountServiceImpl implements AccountService {
         if (account.getCompanyId() != 0) {
             companyDTO = this.companyService.getCompanyById(account.getCompanyId()).getData();
             accountToUpdate.setCompanyId(account.getCompanyId());
-        }else  accountToUpdate.setCompanyId(0);
+        } else accountToUpdate.setCompanyId(0);
         return this.accountMapper.mapAccountToResAccountDTO(this.accountRepository.save(accountToUpdate), companyDTO);
     }
 
+    @CacheEvict(value = "accounts", key = "#id")
     @Override
     public void handleDeleteAccount(long id) throws NotFoundException {
         Optional<Account> optionalAccount = this.accountRepository.findById(id);
@@ -104,6 +105,7 @@ public class AccountServiceImpl implements AccountService {
         this.accountRepository.deleteById(id);
     }
 
+    @Cacheable(value = "accounts", key = "#id")
     @Override
     public ResAccountDTO handleGetAccountById(long id) throws NotFoundException {
         Optional<Account> optionalAccount = this.accountRepository.findById(id);

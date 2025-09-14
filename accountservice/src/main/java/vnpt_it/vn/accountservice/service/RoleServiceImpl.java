@@ -1,5 +1,8 @@
 package vnpt_it.vn.accountservice.service;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -9,7 +12,6 @@ import vnpt_it.vn.accountservice.domain.Role;
 import vnpt_it.vn.accountservice.domain.res.ResultPaginationDTO;
 import vnpt_it.vn.accountservice.exception.NotFoundException;
 import vnpt_it.vn.accountservice.repository.RoleRepository;
-import vnpt_it.vn.accountservice.service.RoleService;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,12 +27,14 @@ public class RoleServiceImpl implements RoleService {
         this.authService = authService;
     }
 
+    @CachePut(value = "roles", key = "#role.id")
     @Override
     public Role handleCreateRole(Role role) {
         role.setCreatedBy(this.authService.getUserInfo().getSub());
         return this.roleRepository.save(role);
     }
 
+    @CachePut(value = "roles", key = "#role.id")
     @Override
     public Role handleUpdateRole(Role role) throws NotFoundException {
         Optional<Role> optionalRole = this.roleRepository.findById(role.getId());
@@ -46,6 +50,7 @@ public class RoleServiceImpl implements RoleService {
         throw new NotFoundException("Role with id " + role.getId() + " not found");
     }
 
+    @CacheEvict(value = "roles", key = "#id")
     @Override
     public void handleDeleteRole(long id) throws NotFoundException {
         Optional<Role> optionalRole = this.roleRepository.findById(id);
@@ -55,6 +60,7 @@ public class RoleServiceImpl implements RoleService {
         this.roleRepository.delete(optionalRole.get());
     }
 
+    @Cacheable(value = "roles", key = "#id")
     @Override
     public Role handleGetRoleById(long id) throws NotFoundException {
         Optional<Role> optionalRole = this.roleRepository.findById(id);
